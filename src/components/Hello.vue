@@ -5,7 +5,7 @@
                 <div class="hero-body">
                     <div class="hello__body">
                         <div class="hello__text">Hi, my name is</div>
-                        <div class="hello__title">Sergey Panteleev</div>
+                        <div class="hello__title is-size-1-tablet is-size-4-mobile">Sergey Panteleev</div>
                         <div class="hello__description">
                             I am
                             <vue-typer
@@ -16,7 +16,7 @@
                             ></vue-typer>
                         </div>
                         <div class="hello__download">
-                            <a class="hello__link" href="#">Download CV</a>
+                            <a class="hello__link link" href="#">Download CV</a>
                         </div>
                     </div>
                 </div>
@@ -74,30 +74,17 @@
 
     .hello__title {
         font-family: 'Raleway', sans-serif;
-        font-size: 65px;
         font-weight: 700;
         color: #fff;
         margin: 0 0 15px;
     }
 
     .hello__description {
-        width: 600px;
-        max-width: 100%;
         font-weight: 400;
         font-size: 18px;
         padding: 0 0 35px;
         margin: 0;
         color: #fff;
-    }
-
-    .hello__link {
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 18px;
-        font-weight: 200;
-        position: relative;
-        display: inline-block;
-        color: #ffffff;
     }
 
     .vue-typer .custom.char {

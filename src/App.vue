@@ -2,16 +2,28 @@
     <div id="app">
         <Hello/>
         <About/>
+        <Skills/>
+        <WorkExperience/>
+        <Education/>
+        <Links/>
     </div>
 </template>
 
 <script>
   import Hello from './components/Hello';
   import About from './components/About';
+  import WorkExperience from './components/WorkExperience';
+  import Skills from './components/Skills';
+  import Education from './components/Education';
+  import Links from './components/Links';
 
   export default {
     name: 'app',
     components: {
+      Links,
+      Education,
+      Skills,
+      WorkExperience,
       About,
       Hello,
     },

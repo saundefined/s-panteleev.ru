@@ -10,7 +10,8 @@
   "dependencies": {
     "bulma": "^0.7.4",
     "vue": "^2.6.6",
-    "vue-typer": "^1.2.0"
+    "vue-typer": "^1.2.0",
+    "vue-yandex-metrika": "^1.7.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
