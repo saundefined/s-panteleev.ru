@@ -16,7 +16,7 @@
                             ></vue-typer>
                         </div>
                         <div class="hello__download">
-                            <a class="hello__link link" href="#">Download CV</a>
+                            <a class="hello__link link" href="/files/Panteleev_Sergey_PHP.pdf">Download CV (RU)</a>
                         </div>
                     </div>
                 </div>
