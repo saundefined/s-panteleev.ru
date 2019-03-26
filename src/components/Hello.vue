@@ -2,12 +2,21 @@
     <div class="hello">
         <div class="container is-fluid">
             <div class="hero is-fullheight">
+                <div class="hero-head">
+                    <div class="lang has-text-right">
+                        <a :class="[locale === lang ? 'lang__link lang__link--active' : 'lang__link']"
+                           :href="'#' + lang"
+                           v-bind:key="index"
+                           v-for="(lang, index) in locales"
+                        >{{ lang }}</a>
+                    </div>
+                </div>
                 <div class="hero-body">
                     <div class="hello__body">
-                        <div class="hello__text">Hi, my name is</div>
-                        <div class="hello__title is-size-1-tablet is-size-4-mobile">Sergey Panteleev</div>
+                        <div class="hello__text">{{ $t('hello.hi') }}</div>
+                        <div class="hello__title is-size-1-tablet is-size-4-mobile">{{ $t('hello.name') }}</div>
                         <div class="hello__description">
-                            I am
+                            {{ $t('hello.iam') }}
                             <vue-typer
                                     :pre-erase-delay='1000'
                                     :text="roles"
@@ -16,7 +25,7 @@
                             ></vue-typer>
                         </div>
                         <div class="hello__download">
-                            <a class="hello__link link" href="/files/Panteleev_Sergey_PHP.pdf">Download CV (RU)</a>
+                            <a class="hello__link link" href="/files/Panteleev_Sergey_PHP.pdf">{{ $t('hello.cv') }}</a>
                         </div>
                     </div>
                 </div>
@@ -39,6 +48,10 @@
           'PHP-Developer',
           'Front-end developer',
         ],
+        locales: [
+          'ru',
+          'en',
+        ],
       };
     },
     components: {
@@ -48,6 +61,47 @@
 </script>
 
 <style>
+    .lang {
+        margin-top: 30px;
+    }
+
+    .lang__link {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 18px;
+        font-weight: 200;
+        position: relative;
+        display: inline-block;
+        color: #ffffff;
+        margin-left: 30px;
+    }
+
+    .lang__link:hover {
+        color: #ffffff;
+    }
+
+    .lang__link:after {
+        content: '';
+        width: 0;
+        height: 1px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        opacity: 0.5;
+        background: #444;
+        -webkit-transition: ease all 0.3s;
+        -moz-transition: ease all 0.3s;
+        -o-transition: ease all 0.3s;
+        transition: ease all 0.3s;
+    }
+
+    .lang__link:hover:after,
+    .lang__link--active:after {
+        width: 100%;
+        transition-delay: 0.4s;
+        background: #fff;
+    }
+
     .hello {
         background: #000000;
     }

@@ -11,27 +11,26 @@
                         </div>
                         <div class="column is-7 is-offset-1">
                             <div class="about__title">
-                                <div class="title is-3 has-text-white">I am a Web-developer</div>
+                                <div class="title is-3 has-text-white">{{ $t('about.title') }}</div>
                             </div>
                             <div class="about__text">
                                 <p class="about__text">
-                                    Hi, I'm a self-taught programmer and I write in PHP for more than five years.
+                                    {{ $t('about.line1') }}
                                 </p>
                                 <p class="about__text">
-                                    The most projects on current work based on Bitrix CMS, but on pet
-                                    projects I prefer Laravel or Slim Framework.
+                                    {{ $t('about.line2') }}
                                 </p>
                                 <p class="about__text">
-                                    I can understand the unfamiliar code and I don't suggest to rewrite all project from
-                                    the
-                                    start, but if it's really necessary – can do it.
+                                    {{ $t('about.line3') }}
                                 </p>
                                 <p class="about__text">
-                                    Also, I write in React (JS, Native, Redux), Vue.js and now I study Swift.
+                                    {{ $t('about.line4') }}
                                 </p>
                             </div>
                             <div class="about__link">
-                                <a class="link" href="mailto:sergey@s-panteleev.ru?subject=We're hire!">Hire me</a>
+                                <a class="link" href="mailto:sergey@s-panteleev.ru?subject=We're hire!">
+                                    {{ $t('about.hire') }}
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -3,28 +3,28 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-body">
-                    <div class="title is-3 has-text-white">Links</div>
+                    <div class="title is-3 has-text-white">{{ $t('links.title') }}</div>
 
                     <div class="columns">
                         <div class="column is-6">
                             <ul class="links__list">
                                 <li>
                                     <a class="link" href="https://vk.com/id261057243" rel="noreferrer nofollow"
-                                       target="_blank">Vkontakte</a>
+                                       target="_blank">{{ $t('links.vk') }}</a>
                                 </li>
                                 <li>
                                     <a class="link" href="https://www.facebook.com/saundefined"
                                        rel="noreferrer nofollow"
-                                       target="_blank">Facebook</a>
+                                       target="_blank">{{ $t('links.fb') }}</a>
                                 </li>
                                 <li>
                                     <a class="link" href="http://twitter.com/s_panteleev" rel="noreferrer nofollow"
-                                       target="_blank">Twitter</a>
+                                       target="_blank">{{ $t('links.tw') }}</a>
                                 </li>
                                 <li>
                                     <a class="link" href="https://www.instagram.com/saundefined/"
                                        rel="noreferrer nofollow"
-                                       target="_blank">Instagram</a>
+                                       target="_blank">{{ $t('links.ig') }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -32,20 +32,20 @@
                             <ul class="links__list">
                                 <li>
                                     <a class="link" href="https://github.com/saundefined/" rel="noreferrer nofollow"
-                                       target="_blank">GitHub</a>
+                                       target="_blank">{{ $t('links.gh') }}</a>
                                 </li>
                                 <li>
                                     <a class="link" href="https://moikrug.ru/saundefined" rel="noreferrer nofollow"
-                                       target="_blank">Moikrug</a>
+                                       target="_blank">{{ $t('links.moikrug') }}</a>
                                 </li>
                                 <li>
                                     <a class="link" href="https://toster.ru/user/s_panteleev" rel="noreferrer nofollow"
-                                       target="_blank">Toster</a>
+                                       target="_blank">{{ $t('links.toster') }}</a>
                                 </li>
                                 <li>
                                     <a class="link" href="https://www.hackerrank.com/saundefined"
                                        rel="noreferrer nofollow"
-                                       target="_blank">HackerRank</a>
+                                       target="_blank">{{ $t('links.hr') }}</a>
                                 </li>
                             </ul>
                         </div>

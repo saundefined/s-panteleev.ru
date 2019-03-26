@@ -3,16 +3,16 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-body">
-                    <div class="title is-3 has-text-white">Skills and abilities</div>
+                    <div class="title is-3 has-text-white">{{ $t('skills.title') }}</div>
                     <div class="skills__text has-text-white">
-                        <p>Sometimes I solve problems on
+                        <p>{{ $t('skills.hackerrank') }}
                             <a class="link__inline" href="https://www.hackerrank.com/saundefined"
                                rel="noreferrer nofollow"
                                target="_blank">HackerRank</a>
-                            and to answer the questions on
+                            {{ $t('skills.toster') }}
                             «<a class="link__inline" href="https://toster.ru/user/s_panteleev" rel="noreferrer nofollow"
-                                target="_blank">Toster</a>»
-                            (someday I'll do it on StackOverflow).</p>
+                                target="_blank">{{ $t('skills.toster_name') }}</a>»
+                            {{ $t('skills.stackoverflow') }}.</p>
                     </div>
                 </div>
             </div>

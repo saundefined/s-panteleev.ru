@@ -3,35 +3,36 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-body">
-                    <div class="title is-3 has-text-white">Work experience</div>
+                    <div class="title is-3 has-text-white">{{ $t('work.title') }}</div>
                     <div class="work__items">
                         <WorkItem
                                 :description="[
-                                    'Development from scratch: from corporate sites to complex CRM systems.',
-                                    'Development of mobile applications on React Native.',
-                                    'Writing articles in a corporate blog.',
+                                    $t('work.prominado_development'),
+                                    $t('work.prominado_api'),
+                                    $t('work.prominado_mobile'),
+                                    $t('work.prominado_blog')
                                 ]"
+                                :duration="$t('work.prominado_duration')"
                                 :links="[
-                                    {name: 'Company website', link: 'https://vk.cc/8oHdHf'},
-                                    {name: 'Corporate GitHub', link: 'https://vk.cc/8oHdVS'},
+                                    {name: $t('work.website'), link: 'https://vk.cc/8oHdHf'},
+                                    {name: $t('work.github'), link: 'https://vk.cc/8oHdVS'},
                                 ]"
-                                duration="Duration 5 years (2013 – until now)"
                                 logo="prominado"
-                                position="Web-developer"
-                                title="Prominado"
+                                :position="$t('work.prominado_position')"
+                                :title="$t('work.prominado')"
                         />
 
                         <WorkItem
                                 :description="[
-                                    'Small tasks on the frontend and programming of existing projects.'
+                                    $t('work.cetera_development')
                                 ]"
+                                :duration="$t('work.cetera_duration')"
                                 :links="[
-                                    {name: 'Company website', link: 'https://vk.cc/8oHe02'},
+                                    {name: $t('work.website'), link: 'https://vk.cc/8oHe02'},
                                 ]"
-                                duration="Duration 1 year (2010 – 2011)"
                                 logo="cetera"
-                                position="Junior"
-                                title="Cetera Labs"
+                                :position="$t('work.cetera_position')"
+                                :title="$t('work.cetera')"
                         />
                     </div>
                 </div>

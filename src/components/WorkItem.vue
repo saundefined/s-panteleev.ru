@@ -11,7 +11,7 @@
                 <div class="is-size-5 has-text-weight-semibold">{{ title }}</div>
                 <div class="is-size-6">{{ position }}</div>
                 <div class="work__description">
-                    <div class="is-size-6 has-text-weight-semibold">Responsibility</div>
+                    <div class="is-size-6 has-text-weight-semibold">{{ $t('work.responsibility') }}</div>
                     <ul class="work__tasks">
                         <li :key="index" v-for="(item, index) in description">{{ item }}</li>
                     </ul>
