@@ -7,10 +7,12 @@
                     <div class="skills__text has-text-white">
                         <p>{{ $t('skills.hackerrank') }}
                             <a class="link__inline" href="https://www.hackerrank.com/saundefined"
+                               onclick="ym(50044507, 'reachGoal', 'hackerrank'); return true;"
                                rel="noreferrer nofollow"
                                target="_blank">HackerRank</a>
                             {{ $t('skills.toster') }}
                             «<a class="link__inline" href="https://toster.ru/user/s_panteleev" rel="noreferrer nofollow"
+                                onclick="ym(50044507, 'reachGoal', 'toster'); return true;"
                                 target="_blank">{{ $t('skills.toster_name') }}</a>»
                             {{ $t('skills.stackoverflow') }}.</p>
                     </div>

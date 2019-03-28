@@ -19,7 +19,9 @@
 
                 <ul class="work__links">
                     <li :key="index" v-for="(item, index) in links">
-                        <a :href="item.link" class="link">{{ item.name }}</a>
+                        <a :href="item.link" :onclick="'ym(50044507, \'reachGoal\', \'+ item.goal +\'); return true;'"
+                           class="link"
+                        >{{ item.name }}</a>
                     </li>
                 </ul>
             </div>

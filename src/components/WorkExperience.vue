@@ -14,8 +14,8 @@
                                 ]"
                                 :duration="$t('work.prominado_duration')"
                                 :links="[
-                                    {name: $t('work.website'), link: 'https://vk.cc/8oHdHf'},
-                                    {name: $t('work.github'), link: 'https://vk.cc/8oHdVS'},
+                                    {name: $t('work.website'), link: 'https://vk.cc/8oHdHf', goal: 'prominado_website'},
+                                    {name: $t('work.github'), link: 'https://vk.cc/8oHdVS', goal: 'prominado_github'},
                                 ]"
                                 logo="prominado"
                                 :position="$t('work.prominado_position')"
@@ -28,7 +28,7 @@
                                 ]"
                                 :duration="$t('work.cetera_duration')"
                                 :links="[
-                                    {name: $t('work.website'), link: 'https://vk.cc/8oHe02'},
+                                    {name: $t('work.website'), link: 'https://vk.cc/8oHe02', goal: 'cetera_website'},
                                 ]"
                                 logo="cetera"
                                 :position="$t('work.cetera_position')"

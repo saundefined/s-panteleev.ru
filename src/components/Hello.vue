@@ -4,7 +4,7 @@
             <div class="hero is-fullheight">
                 <div class="hero-head">
                     <div class="lang has-text-right">
-                        <a :class="[locale === lang ? 'lang__link lang__link--active' : 'lang__link']"
+                        <a class="lang__link"
                            :href="'#' + lang"
                            v-bind:key="index"
                            v-for="(lang, index) in locales"
@@ -25,7 +25,8 @@
                             ></vue-typer>
                         </div>
                         <div class="hello__download">
-                            <a class="hello__link link" href="/files/Panteleev_Sergey_PHP.pdf">{{ $t('hello.cv') }}</a>
+                            <a class="hello__link link" href="/files/Panteleev_Sergey_PHP.pdf"
+                               onclick="ym(50044507, 'reachGoal', 'download_cv'); return true;">{{ $t('hello.cv') }}</a>
                         </div>
                     </div>
                 </div>

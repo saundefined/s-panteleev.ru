@@ -28,7 +28,8 @@
                                 </p>
                             </div>
                             <div class="about__link">
-                                <a class="link" href="mailto:sergey@s-panteleev.ru?subject=We're hire!">
+                                <a class="link" href="mailto:sergey@s-panteleev.ru?subject=We're hire!"
+                                   onclick="ym(50044507, 'reachGoal', 'hire_me'); return true;">
                                     {{ $t('about.hire') }}
                                 </a>
                             </div>
