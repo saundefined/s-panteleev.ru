@@ -48,6 +48,7 @@
         roles: [
           'PHP-Developer',
           'Front-end developer',
+          'novice Maintainer of Russian PHP documentation',
         ],
         locales: [
           'ru',
