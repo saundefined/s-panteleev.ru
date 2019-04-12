@@ -25,7 +25,7 @@
                             ></vue-typer>
                         </div>
                         <div class="hello__download">
-                            <a class="hello__link link" href="/files/Panteleev_Sergey_PHP.pdf"
+                            <a :href="$t('hello.cv_link')" class="hello__link link"
                                onclick="ym(50044507, 'reachGoal', 'download_cv'); return true;">{{ $t('hello.cv') }}</a>
                         </div>
                     </div>

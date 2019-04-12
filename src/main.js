@@ -18,6 +18,7 @@ const i18n = new VueI18n({
         name: 'Sergey Panteleev',
         iam: 'I am',
         cv: 'Download CV',
+        cv_link: '/files/Panteleev_Sergey_PHP_En.pdf',
         roles: [
           'PHP-Developer',
           'Front-end developer',
@@ -81,6 +82,7 @@ const i18n = new VueI18n({
         name: 'Пантелеев Сергей',
         iam: 'Я',
         cv: 'Скачать резюме',
+        cv_link: '/files/Panteleev_Sergey_PHP.pdf',
         roles: [
           'разработчик PHP',
           'front-end разработчик',
