@@ -35,6 +35,11 @@
                         <div class="column is-6">
                             <ul class="links__list">
                                 <li>
+                                    <a class="link" href="https://people.php.net/sergey" rel="noreferrer nofollow"
+                                       onclick="ym(50044507, 'reachGoal', 'people_php'); return true;"
+                                       target="_blank">{{ $t('links.php') }}</a>
+                                </li>
+                                <li>
                                     <a class="link" href="https://github.com/saundefined/" rel="noreferrer nofollow"
                                        onclick="ym(50044507, 'reachGoal', 'github'); return true;"
                                        target="_blank">{{ $t('links.gh') }}</a>

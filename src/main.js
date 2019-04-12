@@ -72,6 +72,7 @@ const i18n = new VueI18n({
         moikrug: 'Moikrug',
         toster: 'Toster',
         hr: 'HackerRank',
+        php: 'PHP People',
       },
     },
     ru: {
@@ -134,6 +135,7 @@ const i18n = new VueI18n({
         moikrug: 'Мой Круг',
         toster: 'Тостер',
         hr: 'HackerRank',
+        php: 'PHP People',
       },
     },
   },
