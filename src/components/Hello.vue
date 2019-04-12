@@ -19,7 +19,7 @@
                             {{ $t('hello.iam') }}
                             <vue-typer
                                     :pre-erase-delay='1000'
-                                    :text="roles"
+                                    :text="$t('hello.roles')"
                                     :type-delay='50'
                                     erase-style='clear'
                             ></vue-typer>
@@ -45,11 +45,6 @@
     name: 'Hello',
     data() {
       return {
-        roles: [
-          'PHP-Developer',
-          'Front-end developer',
-          'novice Maintainer of Russian PHP documentation',
-        ],
         locales: [
           'ru',
           'en',

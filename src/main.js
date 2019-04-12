@@ -18,6 +18,11 @@ const i18n = new VueI18n({
         name: 'Sergey Panteleev',
         iam: 'I am',
         cv: 'Download CV',
+        roles: [
+          'PHP-Developer',
+          'Front-end developer',
+          'novice Maintainer of Russian PHP documentation',
+        ],
       },
       about: {
         title: 'I am a Web-developer',
@@ -75,6 +80,11 @@ const i18n = new VueI18n({
         name: 'Пантелеев Сергей',
         iam: 'Я',
         cv: 'Скачать резюме',
+        roles: [
+          'разработчик PHP',
+          'front-end разработчик',
+          'начинающий мейнтейнер русской документации PHP',
+        ],
       },
       about: {
         title: 'Web-разработчик',
