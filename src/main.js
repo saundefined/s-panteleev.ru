@@ -39,6 +39,7 @@ const i18n = new VueI18n({
         toster: 'and to answer the questions on',
         toster_name: 'Toster',
         stackoverflow: '(someday I\'ll do it on StackOverflow)',
+        rudocs: 'Recently I started a project to translate the documentation necessary for work - ',
       },
       work: {
         title: 'Work experience',
@@ -73,7 +74,6 @@ const i18n = new VueI18n({
         moikrug: 'Moikrug',
         toster: 'Toster',
         hr: 'HackerRank',
-        php: 'PHP People',
       },
     },
     ru: {
@@ -103,6 +103,7 @@ const i18n = new VueI18n({
         toster: 'и отвечаю на вопросы на',
         toster_name: 'Тостере',
         stackoverflow: '(когда-нибудь перейду на StackOverflow)',
+        rudocs: 'Недавно начал проект по переводу документации, необходимой для работы – ',
       },
       work: {
         title: 'Опыт работы',
@@ -137,7 +138,6 @@ const i18n = new VueI18n({
         moikrug: 'Мой Круг',
         toster: 'Тостер',
         hr: 'HackerRank',
-        php: 'PHP People',
       },
     },
   },
