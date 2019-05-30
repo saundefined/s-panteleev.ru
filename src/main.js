@@ -13,6 +13,7 @@ const i18n = new VueI18n({
   locale: locale,
   messages: {
     en: {
+      title: 'Panteleev Sergey – PHP-Developer',
       hello: {
         hi: 'Hi, my name is',
         name: 'Sergey Panteleev',
@@ -77,6 +78,7 @@ const i18n = new VueI18n({
       },
     },
     ru: {
+      title: 'Пантелеев Сергей – Разработчик PHP',
       hello: {
         hi: 'Привет, меня зовут',
         name: 'Пантелеев Сергей',
@@ -142,6 +144,7 @@ const i18n = new VueI18n({
     },
   },
 });
+document.title = i18n.i('title');
 
 new Vue({
   i18n,
@@ -157,4 +160,5 @@ function setLocale() {
   }
 
   i18n.locale = locale;
+  document.title = i18n.i('title');
 }
