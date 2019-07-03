@@ -40,7 +40,7 @@ const i18n = new VueI18n({
         toster: 'and to answer the questions on',
         toster_name: 'Toster',
         stackoverflow: '(someday I\'ll do it on StackOverflow)',
-        rudocs: 'Recently I started a project to translate the documentation necessary for work - ',
+        medium: 'Also I write articles on Medium – ',
       },
       work: {
         title: 'Work experience',
@@ -105,7 +105,7 @@ const i18n = new VueI18n({
         toster: 'и отвечаю на вопросы на',
         toster_name: 'Тостере',
         stackoverflow: '(когда-нибудь перейду на StackOverflow)',
-        rudocs: 'Недавно начал проект по переводу документации, необходимой для работы – ',
+        medium: 'Также пишу статьи на Medium – ',
       },
       work: {
         title: 'Опыт работы',

@@ -15,9 +15,9 @@
                                 onclick="ym(50044507, 'reachGoal', 'toster'); return true;"
                                 target="_blank">{{ $t('skills.toster_name') }}</a>»
                             {{ $t('skills.stackoverflow') }}.</p>
-                        <p>{{ $t('skills.rudocs') }} <a class="link__inline" href="https://ru-docs.ru"
+                        <p>{{ $t('skills.medium') }} <a class="link__inline" href="https://medium.com/@saundefined"
                                                         rel="noreferrer nofollow"
-                                                        target="_blank">ru-docs.ru</a></p>
+                                                        target="_blank">@saundefined</a></p>
                     </div>
                 </div>
             </div>
