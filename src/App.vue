@@ -25,7 +25,7 @@
                         <span class="button is-medium is-white has-background-white">Download CV</span>
 
                         <a class="button is-medium is-rounded is-light cv__link"
-                           href="/public/files/Panteleev_Sergey_PHP.pdf"
+                           href="/files/Panteleev_Sergey_PHP.pdf"
                            onclick="ym(50044507, 'reachGoal', 'download_cv'); return true;"
                            target="_blank"
                         >
@@ -35,7 +35,7 @@
                         </a>
 
                         <a class="button is-medium is-rounded is-light"
-                           href="/public/files/Panteleev_Sergey_PHP_En.pdf"
+                           href="/files/Panteleev_Sergey_PHP_En.pdf"
                            onclick="ym(50044507, 'reachGoal', 'download_cv'); return true;"
                            target="_blank"
                         >
