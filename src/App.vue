@@ -96,7 +96,6 @@
 </script>
 
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Open Sans:300,400,700');
     @import '../node_modules/bulma/css/bulma.min.css';
     @import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
     @import '../node_modules/flag-icon-css/css/flag-icon.min.css';
