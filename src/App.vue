@@ -47,36 +47,42 @@
 
                     <div class="has-text-centered">
                         <a class="fa-stack fa-lg" href="https://github.com/saundefined"
+                           onclick="ym(50044507, 'reachGoal', 'github'); return true;"
                            rel="noreferrer nofollow" target="_blank">
                             <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
                             <i class="fab fa-github-alt fa-stack-1x has-text-white"></i>
                         </a>
 
                         <a class="fa-stack fa-lg" href="https://www.linkedin.com/in/saundefined/"
+                           onclick="ym(50044507, 'reachGoal', 'linkedin'); return true;"
                            rel="noreferrer nofollow" target="_blank">
                             <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
                             <i class="fab fa-linkedin-in fa-stack-1x has-text-white"></i>
                         </a>
 
                         <a class="fa-stack fa-lg" href="https://vk.com/id261057243"
+                           onclick="ym(50044507, 'reachGoal', 'vk'); return true;"
                            rel="noreferrer nofollow" target="_blank">
                             <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
                             <i class="fab fa-vk fa-stack-1x has-text-white"></i>
                         </a>
 
                         <a class="fa-stack fa-lg" href="https://facebook.com/saundefined"
+                           onclick="ym(50044507, 'reachGoal', 'fb'); return true;"
                            rel="noreferrer nofollow" target="_blank">
                             <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
                             <i class="fab fa-facebook-f fa-stack-1x has-text-white"></i>
                         </a>
 
                         <a class="fa-stack fa-lg" href="https://instagram.com/saundefined/"
+                           onclick="ym(50044507, 'reachGoal', 'instagram'); return true;"
                            rel="noreferrer nofollow" target="_blank">
                             <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
                             <i class="fab fa-instagram fa-stack-1x has-text-white"></i>
                         </a>
 
                         <a class="fa-stack fa-lg" href="https://t.me/saundefined"
+                           onclick="ym(50044507, 'reachGoal', 'telegram'); return true;"
                            rel="noreferrer nofollow" target="_blank">
                             <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
                             <i class="fab fa-telegram-plane fa-stack-1x has-text-white"></i>
