@@ -17,6 +17,7 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: dist
-          BUILD_SCRIPT: npm install && npm run-script build
+          BUILD_SCRIPT: npm install && npm run build
           CNAME: s-panteleev.ru
           COMMIT_EMAIL: sergey@php.net
+          COMMIT_NAME: Sergey Panteleev
