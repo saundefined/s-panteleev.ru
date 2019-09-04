@@ -1,4 +1,4 @@
 # Panteleev Sergey personal website
 
-[![CircleCI](https://circleci.com/gh/saundefined/s-panteleev.ru.svg?style=svg)](https://circleci.com/gh/saundefined/s-panteleev.ru)
+![GitHub Actions](https://github.com/saundefined/s-panteleev.ru/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)
 
