@@ -53,6 +53,13 @@
                             <i class="fab fa-github-alt fa-stack-1x has-text-white"></i>
                         </a>
 
+                        <a class="fa-stack fa-lg" href="https://medium.com/@saundefined"
+                           onclick="ym(50044507, 'reachGoal', 'medium'); return true;"
+                           rel="noreferrer nofollow" target="_blank">
+                            <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
+                            <i class="fab fa-medium-m fa-stack-1x has-text-white"></i>
+                        </a>
+
                         <a class="fa-stack fa-lg" href="https://www.linkedin.com/in/saundefined/"
                            onclick="ym(50044507, 'reachGoal', 'linkedin'); return true;"
                            rel="noreferrer nofollow" target="_blank">
@@ -65,13 +72,6 @@
                            rel="noreferrer nofollow" target="_blank">
                             <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
                             <i class="fab fa-vk fa-stack-1x has-text-white"></i>
-                        </a>
-
-                        <a class="fa-stack fa-lg" href="https://facebook.com/saundefined"
-                           onclick="ym(50044507, 'reachGoal', 'fb'); return true;"
-                           rel="noreferrer nofollow" target="_blank">
-                            <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
-                            <i class="fab fa-facebook-f fa-stack-1x has-text-white"></i>
                         </a>
 
                         <a class="fa-stack fa-lg" href="https://instagram.com/saundefined/"
