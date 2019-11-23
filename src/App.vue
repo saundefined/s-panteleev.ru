@@ -53,11 +53,11 @@
                             <i class="fab fa-github-alt fa-stack-1x has-text-white"></i>
                         </a>
 
-                        <a class="fa-stack fa-lg" href="https://medium.com/@saundefined"
+                        <a class="fa-stack fa-lg" href="https://blog.s-panteleev.ru"
                            onclick="ym(50044507, 'reachGoal', 'medium'); return true;"
                            rel="noreferrer nofollow" target="_blank">
                             <i class="fas fa-circle fa-stack-2x has-text-dark"></i>
-                            <i class="fab fa-medium-m fa-stack-1x has-text-white"></i>
+                            <i class="fas fa-feather-alt fa-stack-1x has-text-white"></i>
                         </a>
 
                         <a class="fa-stack fa-lg" href="https://www.linkedin.com/in/saundefined/"
