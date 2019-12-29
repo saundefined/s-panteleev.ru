@@ -21,30 +21,6 @@
                         </a>
                     </div>
 
-                    <div class="has-text-centered cv">
-                        <span class="button is-medium is-white has-background-white">Download CV</span>
-
-                        <a class="button is-medium is-rounded is-light cv__link"
-                           href="/files/Panteleev_Sergey_PHP.pdf"
-                           onclick="ym(50044507, 'reachGoal', 'download_cv'); return true;"
-                           target="_blank"
-                        >
-                            <span class="icon">
-                                <i class="flag-icon flag-icon-ru"/>
-                            </span>
-                        </a>
-
-                        <a class="button is-medium is-rounded is-light"
-                           href="/files/Panteleev_Sergey_PHP_En.pdf"
-                           onclick="ym(50044507, 'reachGoal', 'download_cv'); return true;"
-                           target="_blank"
-                        >
-                            <span class="icon">
-                                <i class="flag-icon flag-icon-gb"/>
-                            </span>
-                        </a>
-                    </div>
-
                     <div class="has-text-centered">
                         <a class="fa-stack fa-lg" href="https://github.com/saundefined"
                            onclick="ym(50044507, 'reachGoal', 'github'); return true;"
