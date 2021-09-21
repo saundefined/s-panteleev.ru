@@ -1,10 +1,14 @@
 <?php
 
 /**
- * @var $container \Illuminate\Container\Container
- * @var $events \TightenCo\Jigsaw\Events\EventBus
+ * @var $container Container
+ * @var $events EventBus
  */
+
+use App\Listeners\GenerateSitemap;
 use Carbon\Carbon;
+use Illuminate\Container\Container;
+use TightenCo\Jigsaw\Events\EventBus;
 use TightenCo\Jigsaw\Jigsaw;
 
 $events->beforeBuild(
@@ -13,3 +17,4 @@ $events->beforeBuild(
     }
 );
 
+$events->afterBuild(GenerateSitemap::class);
