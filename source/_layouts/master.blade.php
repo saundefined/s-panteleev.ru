@@ -26,6 +26,7 @@
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
                 <a href="{{ $page->baseUrl }}/" class="mr-5 hover:text-gray-900">Главная</a>
                 <a href="{{ $page->baseUrl }}/posts/" class="mr-5 hover:text-gray-900">Статьи</a>
+                <a href="{{ $page->baseUrl }}/about/" class="mr-5 hover:text-gray-900">Обо мне</a>
             </nav>
         </div>
     </header>
