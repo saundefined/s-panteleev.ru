@@ -1,7 +1,7 @@
 @extends('_layouts.master')
 
 @section('body')
-    <div class="w-1/2 mx-auto" itemid="{{ $page->getUrl() }}" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="w-full md:w-1/2 mx-auto" itemid="{{ $page->getUrl() }}" itemscope itemtype="https://schema.org/BlogPosting">
         <h1 class="inline-block text-3xl font-bold text-gray-900" itemprop="headline">{{ $page->title }}</h1>
         <meta itemprop="datePublished" content="{{ \Carbon\Carbon::parse($page->date)->format('Y-m-d') }}">
 
@@ -44,8 +44,8 @@
         </div>
 
         <hr class="my-5"/>
-        <div class="text-center">
-            <a class="bg-transparent border-0 py-4 px-8 rounded hover:bg-gray-100" href="/posts/">К списку статей</a>
+        <div class="text-center my-5">
+            <a class="bg-transparent border-0 py-4 px-8 rounded hover:bg-gray-100 inline-block" href="/posts/">К списку статей</a>
         </div>
 
         @include('_components.schema-org-publisher')
