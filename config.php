@@ -8,6 +8,7 @@ return [
     'production' => false,
     'siteName' => 'Сергей Пантелеев',
     'siteDescription' => 'Заметки на полях',
+    'email' => 'sergey@s-panteleev.ru',
     'collections' => [
         'posts' => [
             'sort' => '-date',

@@ -1,11 +1,11 @@
 <div class="flex flex-wrap items-center border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden w-full">
-    <div class="w-2/5">
+    <div class="w-full md:w-2/5">
         <a href="{{ $post->getUrl() }}">
             <img class="object-cover object-center h-full w-full" src="{{ $post->getImage() }}"
                  alt="{{ $post->title }}">
         </a>
     </div>
-    <div class="p-4 flex flex-col flex-wrap w-3/5">
+    <div class="p-4 flex flex-col flex-wrap w-full md:w-3/5">
         <div class="title-font text-lg font-medium text-gray-900 mb-2">
             <a href="{{ $post->getUrl() }}">{{ $post->title }}</a>
         </div>
