@@ -9,7 +9,7 @@ image: /assets/images/cover/blog.jpg
 @endsection
 
 @section('body')
-    <div class="w-1/2 mx-auto">
+    <div class="w-full md:w-1/2 my-4 md:my-0 mx-auto">
         <div class="prose">
             <p>Занимаюсь разработкой на PHP, большинство рабочих проектов на 1С-Битрикс,
                 для pet-проектов использую Laravel.</p>

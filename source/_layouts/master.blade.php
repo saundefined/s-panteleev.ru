@@ -44,7 +44,7 @@
     @yield('header')
 
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-0 md:py-5 mx-auto">
+        <div class="container px-5 my-5 mx-auto">
             @yield('body')
         </div>
     </section>
