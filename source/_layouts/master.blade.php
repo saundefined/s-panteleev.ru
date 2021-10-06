@@ -56,7 +56,7 @@
             © {{ date('Y') }} {{ $page->siteName }}
         </p>
         <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-            
+            @include('_components.footer-social')
         </div>
     </div>
 </footer>
