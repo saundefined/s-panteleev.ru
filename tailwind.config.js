@@ -17,7 +17,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      'sans': ['"Montserrat"'],
+      'sans': ['"Montserrat", sans-serif'],
     },
     extend: {
       typography: {

@@ -6,6 +6,7 @@ mix.setPublicPath('source/assets/build');
 
 mix.js('source/_assets/js/main.js', 'js')
     .sass('source/_assets/sass/main.scss', 'css/main.css')
+    .copyDirectory('source/_assets/fonts', 'source/assets/build/fonts')
     .jigsaw({
       watch: [
         'config.php',
