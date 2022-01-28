@@ -1,9 +1,5 @@
 <div class="p-4 md:w-1/3">
     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-        <a href="{{ $post->getUrl() }}">
-            <img class="w-full object-cover object-center" src="{{ $post->getImage() }}"
-                 alt="{{ $post->title }}">
-        </a>
         <div class="p-4">
             <div class="title-font text-lg font-medium text-gray-900 mb-2">
                 <a href="{{ $post->getUrl() }}">{{ $post->title }}</a>

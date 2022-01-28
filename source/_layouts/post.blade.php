@@ -35,10 +35,6 @@
             </div>
         @endif
 
-        <img class="img-fluid w-100 mb-2 rounded" src="{{ $page->baseUrl . $page->getImage() }}"
-             alt="{{ $page->title }}"
-             title="{{ $page->title }}" itemprop="image"/>
-
         <div class="prose mt-6" itemprop="articleBody">
             @yield('content')
         </div>
