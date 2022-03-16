@@ -1,8 +1,8 @@
 ---
-title: Статьи
+title: Проекты
 description: Переводы статей, обзоры функционала и примеры решений
 pagination:
-    collection: posts
+    collection: projects
     perPage: 12
 ---
 @extends('_layouts.master')

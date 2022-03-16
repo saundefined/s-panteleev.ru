@@ -3,9 +3,7 @@
     <extendedHtml></extendedHtml>
     <link>{{ $entry->getUrl() }}</link>
     <pubDate>{{ date('r', $entry->date) }}</pubDate>
-    @if($author = $authors->get($post->author ?? 'sergey'))
-        <author>{{ $author['name'] }}</author>
-    @endif
+    <author>Сергей Пантелеев</author>
     <turbo:content>
         <![CDATA[
         <header>

@@ -1,7 +1,6 @@
 <?php
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 
 return [
     'baseUrl' => '',
@@ -14,6 +13,10 @@ return [
             'sort' => '-date',
             'path' => 'post/{filename}',
         ],
+        'projects' => [
+            'sort' => '-date',
+            'path' => 'project/{filename}',
+        ],
         'tags' => [
             'path' => '/posts/tag/{filename}',
             'posts' => static function ($page, $allPosts) {
@@ -22,7 +25,6 @@ return [
                 });
             },
         ],
-        'authors',
     ],
     'getDate' => static function ($post) {
         return Carbon::parse($post->date)
@@ -32,8 +34,5 @@ return [
         return file_exists(__DIR__ . '/source/assets/images/posts/' . $post->getFilename() . '/cover.jpg') ?
             '/assets/images/posts/' . $post->getFilename() . '/cover.jpg' :
             '/assets/images/default/post-no-photo.jpg';
-    },
-    'selected' => static function ($page, $section) {
-        return Str::contains($page->getPath(), $section) ? 'selected' : '';
     },
 ];

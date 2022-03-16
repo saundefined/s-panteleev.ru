@@ -26,32 +26,14 @@
     @endif
     <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
 </head>
-<body>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+@include('_components.navigation')
 
-<main>
-    <header class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <a href="{{ $page->baseUrl }}/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                <span class="ml-3 text-xl">{{ $page->siteName }}</span>
-            </a>
-            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a href="{{ $page->baseUrl }}/" class="mr-5 hover:text-gray-900">Главная</a>
-                <a href="{{ $page->baseUrl }}/posts/" class="mr-5 hover:text-gray-900">Статьи</a>
-                <a href="{{ $page->baseUrl }}/about/" class="mr-5 hover:text-gray-900">Обо мне</a>
-            </nav>
-        </div>
-    </header>
+<div class="container">
+    @yield('body')
+</div>
 
-    @yield('header')
-
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 my-5 mx-auto">
-            @yield('body')
-        </div>
-    </section>
-</main>
-
-<footer class="body-font bg-gray-600">
+<footer class="body-font bg-dark-purplish-blue">
     <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
             © {{ date('Y') }} {{ $page->siteName }}
@@ -62,8 +44,7 @@
     </div>
 </footer>
 
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
 <script src="{{ mix('js/main.js', 'assets/build') }}"></script>
-
-@stack('scripts')
 </body>
 </html>
