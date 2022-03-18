@@ -1,50 +1,49 @@
 @extends('_layouts.master')
 
 @section('body')
-    <div class="w-full md:w-1/2 mx-auto" itemid="{{ $page->getUrl() }}" itemscope itemtype="https://schema.org/BlogPosting">
-        <h1 class="inline-block text-3xl font-bold text-gray-900" itemprop="headline">{{ $page->title }}</h1>
-        <meta itemprop="datePublished" content="{{ \Carbon\Carbon::parse($page->date)->format('Y-m-d') }}">
+    <div class="container pb-16 md:pb-28">
+        <div class="pt-8 md:pt-16 pb-4 md:pb-8">
+            <h1 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+                {{ $page->title }}
+            </h1>
 
-        <div class="flex items-center justify-between py-5 my-5 border-b-2 border-gray-100 w-full">
-            @if($author = $authors->get($page->author ?? 'sergey'))
-                <div class="inline-flex items-center" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                    <img alt="{{ $author['name'] }}" src="{{ $page->baseUrl . $author['image'] }}"
-                         class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
-                         itemprop="image"
-                    >
-                    <span class="flex-grow flex flex-col pl-4">
-                        <span class="title-font font-medium text-gray-900" itemprop="name">{{ $author['name'] }}</span>
-                        <span class="text-gray-400 text-xs mt-0.5">{{ $page->getDate() }}</span>
-                    </span>
-                </div>
-            @endif
-            <div class="">
-                <div class="ya-share2" data-curtain data-shape="square" data-color-scheme="whiteblack"
-                     data-services="vkontakte,facebook,telegram,twitter"></div>
+            <div class="flex flex-row items-center my-8 space-x-1 md:space-x-4 justify-center">
+                @if($page->tags)
+                    @foreach($page->tags as $tag)
+                        @include('_components.post-tag')
+                    @endforeach
+                @endif
+
+                <p class="font-normal text-base text-gray-600">{{ $page->getDate() }}</p>
             </div>
         </div>
 
-        @if($original = $page->original)
-            <div class="w-full text-white bg-gray-400 my-5">
-                <div class="container flex items-center justify-between px-6 py-4 mx-auto">
-                    <div class="flex">
-                        Перевод статьи «<a href="{{ $original['url'] }}" rel="noreferrer noopener" class="alert-link"
-                                           target="_blank">{{ $original['title'] }}</a>»
+        <div class="h-64 md:h-96 mb-8">
+            <img class="object-contain w-full h-full bg-dark-purplish-blue"
+                 style="object-position: 50% 50%"
+                 src="{{ $page->getImage() }}"
+                 alt="{{ $page->title }}">
+        </div>
+
+        <div class="max-w-4xl">
+            @if($original = $page->original)
+                <div class="w-full bg-gray-100 my-5 text-dark-purplish-blue">
+                    <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+                        <div class="flex">
+                            <span class="font-medium mr-1">Перевод статьи</span>
+                            «<a href="{{ $original['url'] }}"
+                                rel="noreferrer noopener"
+                                class="display-inline border-b border-gray-300 hover:border-transparent transition-all"
+                                target="_blank">{{ $original['title'] }}</a>»
+                        </div>
                     </div>
                 </div>
+            @endif
+
+            <div class="prose prose-lg text-gray-600 max-w-none mt-5">
+                @yield('content')
             </div>
-        @endif
-
-        <div class="prose mt-6" itemprop="articleBody">
-            @yield('content')
         </div>
-
-        <hr class="my-5"/>
-        <div class="text-center my-5">
-            <a class="bg-transparent border-0 py-4 px-8 rounded hover:bg-gray-100 inline-block" href="/posts/">К списку статей</a>
-        </div>
-
-        @include('_components.schema-org-publisher')
     </div>
 @endsection
 

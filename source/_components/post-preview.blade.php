@@ -1,24 +1,24 @@
-<div class="p-4 md:w-1/3">
-    <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-        <div class="p-4">
-            <div class="title-font text-lg font-medium text-gray-900 mb-2">
-                <a href="{{ $post->getUrl() }}">{{ $post->title }}</a>
+<div class="flex flex-col overflow-hidden bg-white shadow-3xl rounded-xl">
+    <a aria-label="Boost your experience" href="{{ $post->getUrl() }}">
+        <img class="object-cover w-full h-full h-64" style="object-position: 50% 50%"
+             src="{{ $post->getImage() }}"
+             alt="{{ $post->title }}">
+    </a>
+    <div class="flex flex-col justify-between h-full p-6">
+        @if($post->tags)
+            <div class="mb-3 space-x-3">
+                @foreach($post->tags as $tag)
+                    @include('_components.post-tag')
+                @endforeach
             </div>
-            @if($post->tags)
-                @include('_components.post-tags')
-            @endif
-            <div class="leading-relaxed mb-3">{{ $post->description }}</div>
+        @endif
 
-            @if($author = $authors->get($post->author ?? 'sergey'))
-                <div class="inline-flex items-center pt-4 mt-4 border-t-2 border-gray-100 w-full">
-                    <img alt="{{ $author['name'] }}" src="{{ $author['image'] }}"
-                         class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                    <span class="flex-grow flex flex-col pl-4">
-                        <span class="title-font font-medium text-gray-900">{{ $author['name'] }}</span>
-                        <span class="text-gray-400 text-xs mt-0.5">{{ $post->getDate() }}</span>
-                    </span>
-                </div>
-            @endif
-        </div>
+        <a href="{{ $post->getUrl() }}" class="hover:no-underline transition-all text-dark-purplish-blue hover:text-blue-500">
+            <p class="font-bold md:text-3xl text-xl">
+                {{ $post->title }}
+            </p>
+        </a>
+
+        <p class="font-normal text-base text-gray-600 mt-5">{{ $post->description }}</p>
     </div>
 </div>
