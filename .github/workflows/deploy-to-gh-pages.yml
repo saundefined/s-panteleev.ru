@@ -24,10 +24,10 @@ jobs:
         run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
       - name: Install NPM Dependencies
-        run: npm install
+        run: yarn install
 
       - name: Build Site
-        run: npm run production
+        run: yarn run production
 
       - name: Create CNAME File
         run: echo "s-panteleev.ru" >> build_production/CNAME
