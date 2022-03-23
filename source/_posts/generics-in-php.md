@@ -3,7 +3,7 @@ extends: _layouts.post
 section: content
 title: Дженерики в PHP
 date: 2022-04-01
-description: Перевод серии статей о дженериках в PHP. Часть 1. 
+description: Перевод серии статей о дженериках в PHP. Часть 1.
 tags: [php]
 original:
   url: https://stitcher.io/blog/generics-in-php-1
