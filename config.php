@@ -12,6 +12,9 @@ return [
         'posts' => [
             'sort' => '-date',
             'path' => 'post/{filename}',
+            'filter' => static function ($item) {
+                return Carbon::parse($item->date)->lessThanOrEqualTo(Carbon::now());
+            }
         ],
         'projects' => [
             'sort' => '-date',
