@@ -1,8 +1,11 @@
 import hljs from 'highlight.js/lib/core'
-import 'alpinejs'
+import Alpine from 'alpinejs'
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel'
 import '@fortawesome/fontawesome-free/js/all.js'
+
+window.Alpine = Alpine
+Alpine.start()
 
 hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'))
 hljs.registerLanguage('css', require('highlight.js/lib/languages/css'))
