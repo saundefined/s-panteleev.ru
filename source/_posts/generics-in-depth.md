@@ -4,7 +4,7 @@ section: content
 title: Дженерики в деталях
 date: 2022-04-01
 description: Перевод серии статей о дженериках в PHP. Часть 2.
-tags: [php]
+tags: [php, generics]
 original:
   url: https://stitcher.io/blog/generics-in-php-2
   title: "Generics in depth"
