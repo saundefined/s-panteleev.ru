@@ -5,6 +5,7 @@ title: Погружаемся в дженерики
 date: 2022-04-01
 description: Перевод серии статей о дженериках в PHP. Часть 2.
 tags: [php, generics]
+draft: true
 original:
   url: https://stitcher.io/blog/generics-in-php-2
   title: "Generics in depth"
@@ -127,7 +128,7 @@ class Attributes
     /**
      * @return AttributeType 
      */   
-    public function instanceOf(): mixed
+    public function newInstance(): mixed
     { /* … */ }
     
     // …
@@ -164,4 +165,4 @@ class Attributes
 
 Так почему же в PHP до сих пор нет подходящих дженериков? Почему мы полагаемся на Docblock без чёткой спецификации?
 
-Об этом в следующей статье.
+Об этом в [следующей статье](/post/generics-why-we-cant-have-them/).

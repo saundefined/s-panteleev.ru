@@ -5,6 +5,7 @@ title: Почему в PHP нет дженериков?
 date: 2022-04-08
 description: Перевод серии статей о дженериках в PHP. Часть 3.
 tags: [php, generics]
+draft: true
 original:
   url: https://stitcher.io/blog/generics-in-php-3
   title: "Why we can't have generics in PHP"
