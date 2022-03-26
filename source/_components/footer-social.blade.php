@@ -8,10 +8,6 @@
         <i class="fa-brands fa-vk"></i>
     </a>
     <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
-       href="https://www.instagram.com/saundefined/" rel="noopener noreferrer" target="_blank">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
        href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
         <i class="fa-brands fa-github"></i>
     </a>

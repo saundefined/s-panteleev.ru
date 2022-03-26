@@ -118,11 +118,6 @@ title: Обо мне
                     ])
 
                     @include('_components.social-item', [
-                        'icon' => 'instagram',
-                        'link' => 'https://www.instagram.com/saundefined/'
-                    ])
-
-                    @include('_components.social-item', [
                         'icon' => 'github',
                         'link' => 'https://github.com/saundefined'
                     ])
