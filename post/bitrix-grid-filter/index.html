@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Гриды и фильтры в 1С-Битрикс | Сергей Пантелеев</title>
+    <meta name="description" content="Как работать с гридами и фильтрами в 1С-Битрикс">
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="container pb-16 md:pb-28">
+        <div class="pt-8 md:pt-16 pb-4 md:pb-8">
+            <h1 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+                Гриды и фильтры в 1С-Битрикс
+            </h1>
+
+            <div class="flex flex-row items-center my-8 space-x-1 md:space-x-4 justify-center">
+                                                            <a href="/posts/tag/bitrix"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">1С-Битрикс</a>
+                                    
+                <p class="font-normal text-base text-gray-600">3 июля 2019 г.</p>
+            </div>
+        </div>
+
+        <div class="h-64 md:h-96 mb-8">
+            <img class="object-contain w-full h-full bg-dark-purplish-blue"
+                 style="object-position: 50% 50%"
+                 src="/assets/images/posts/bitrix-grid-filter/cover.jpg"
+                 alt="Гриды и фильтры в 1С-Битрикс">
+        </div>
+
+        <div class="max-w-4xl">
+            
+            <div class="prose prose-lg text-gray-600 max-w-none mt-5">
+                <p>Скорее всего, вы сталкивались с задачей вывести в публичной части (да и в административном разделе) проекта какую-либо служебную информацию для пользователей в табличном виде.
+Наверняка, вы писали собственные шаблоны для компонентов и потом добавляли костыли для фильтрации и сортировки этих данных.</p>
+
+<p>Начиная с версии <code>17.0.7</code> Главного модуля 1С-Битрикс вышли два компонента: <code>bitrix:main.ui.filter</code> и <code>bitrix:main.ui.grid</code> с классами <code>Bitrix\Main\UI\Filter</code> и <code>Bitrix\Main\Grid</code> (есть даже в редакции «Первый сайт»).</p>
+
+<p><img src="/assets/images/posts/bitrix-grid-filter/1.png" alt="" /></p>
+
+<h2>Гриды</h2>
+
+<p>За вывод грида отвечает компонент <code>bitrix:main.ui.grid</code>. Параметры:</p>
+
+<table>
+<thead>
+<tr>
+  <th>Параметр</th>
+  <th align="left">Тип</th>
+  <th align="left">Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>GRID_ID</td>
+  <td align="left">string</td>
+  <td align="left">Идентификатор грида (такой же, как у фильтра)</td>
+</tr>
+<tr>
+  <td>COLUMNS</td>
+  <td align="left">array</td>
+  <td align="left">Массив с заголовками грида</td>
+</tr>
+<tr>
+  <td>ROWS</td>
+  <td align="left">array</td>
+  <td align="left">Массив с значениями грида, действиями в контекстном меню</td>
+</tr>
+<tr>
+  <td>SHOW_ROW_CHECKBOXES</td>
+  <td align="left">bool</td>
+  <td align="left">Показывать чекбоксы у строк для множественных действий</td>
+</tr>
+<tr>
+  <td>NAV_OBJECT</td>
+  <td align="left">object</td>
+  <td align="left">Объект для постраничной навигации</td>
+</tr>
+<tr>
+  <td>AJAX_MODE</td>
+  <td align="left">string</td>
+  <td align="left">Использовать ли ajax режим</td>
+</tr>
+<tr>
+  <td>AJAX_ID</td>
+  <td align="left">string</td>
+  <td align="left">Ajax ID Берётся из компонента фильтра</td>
+</tr>
+<tr>
+  <td>PAGE_SIZES</td>
+  <td align="left">array</td>
+  <td align="left">Массив для выпадающего списка с выбором кол-ва элементов на странице</td>
+</tr>
+<tr>
+  <td>AJAX_OPTION_JUMP</td>
+  <td align="left">string</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>AJAX_OPTION_JUMP</td>
+  <td align="left">string</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>SHOW_CHECK_ALL_CHECKBOXES</td>
+  <td align="left">bool</td>
+  <td align="left">Показывать "Выбрать все"</td>
+</tr>
+<tr>
+  <td>SHOW_ROW_ACTIONS_MENU</td>
+  <td align="left">bool</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>SHOW_GRID_SETTINGS_MENU</td>
+  <td align="left">bool</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>SHOW_NAVIGATION_PANEL</td>
+  <td align="left">bool</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>SHOW_PAGINATION</td>
+  <td align="left">bool</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>SHOW_SELECTED_COUNTER</td>
+  <td align="left">bool</td>
+  <td align="left">Показывать "Выбрано элементов"</td>
+</tr>
+<tr>
+  <td>SHOW_TOTAL_COUNTER</td>
+  <td align="left">bool</td>
+  <td align="left">Показывать "Всего элементов"</td>
+</tr>
+<tr>
+  <td>SHOW_PAGESIZE</td>
+  <td align="left">bool</td>
+  <td align="left">Выводить выпадающий список с выбором кол-ва элементов на странице</td>
+</tr>
+<tr>
+  <td>SHOW_ACTION_PANEL</td>
+  <td align="left">bool</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>ALLOW_COLUMNS_SORT</td>
+  <td align="left">bool</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>ALLOW_COLUMNS_RESIZE</td>
+  <td align="left">bool</td>
+  <td align="left"></td>
+</tr>
+<tr>
+  <td>ALLOW_HORIZONTAL_SCROLL</td>
+  <td align="left">bool</td>
+  <td align="left">Будет доступен горизонтальный скролл</td>
+</tr>
+<tr>
+  <td>ALLOW_SORT</td>
+  <td align="left">bool</td>
+  <td align="left">Разрешить сортировку</td>
+</tr>
+<tr>
+  <td>ALLOW_PIN_HEADER</td>
+  <td align="left">bool</td>
+  <td align="left">Разрешать закреплять шапку грида</td>
+</tr>
+<tr>
+  <td>AJAX_OPTION_HISTORY</td>
+  <td align="left">bool</td>
+  <td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<p>Пример вызова компонента:</p>
+
+<pre><code class="language-php">&lt;?php
+
+$grid_options = new Bitrix\Main\Grid\Options('report_list');
+$sort = $grid_options-&gt;GetSorting(['sort' =&gt; ['ID' =&gt; 'DESC'], 'vars' =&gt; ['by' =&gt; 'by', 'order' =&gt; 'order']]);
+$nav_params = $grid_options-&gt;GetNavParams();
+
+$nav = new Bitrix\Main\UI\PageNavigation('report_list');
+$nav-&gt;allowAllRecords(true)
+    -&gt;setPageSize($nav_params['nPageSize'])
+    -&gt;initFromUri();
+
+// Кнопка удалить
+$onchange = new Onchange();
+$onchange-&gt;addAction(
+    [
+        'ACTION' =&gt; Actions::CALLBACK,
+        'CONFIRM' =&gt; true,
+        'CONFIRM_APPLY_BUTTON'  =&gt; 'Подтвердить',
+        'DATA' =&gt; [
+            ['JS' =&gt; 'Grid.removeSelected()']
+        ]
+    ]
+);
+
+$APPLICATION-&gt;IncludeComponent('bitrix:main.ui.grid', '', [ 
+    'GRID_ID' =&gt; 'report_list', 
+    'COLUMNS' =&gt; [ 
+        ['id' =&gt; 'ID', 'name' =&gt; 'ID', 'sort' =&gt; 'ID', 'default' =&gt; true], 
+        ['id' =&gt; 'DATE', 'name' =&gt; 'Дата', 'sort' =&gt; 'DATE', 'default' =&gt; true], 
+        ['id' =&gt; 'AMOUNT', 'name' =&gt; 'Сумма', 'sort' =&gt; 'AMOUNT', 'default' =&gt; true], 
+        ['id' =&gt; 'PAYER_INN', 'name' =&gt; 'ИНН Плательщика', 'sort' =&gt; 'PAYER_INN', 'default' =&gt; true], 
+        ['id' =&gt; 'PAYER_NAME', 'name' =&gt; 'Плательщик', 'sort' =&gt; 'PAYER_NAME', 'default' =&gt; true], 
+        ['id' =&gt; 'IS_SPEND', 'name' =&gt; 'Тип операции', 'sort' =&gt; 'IS_SPEND', 'default' =&gt; true], 
+    ], 
+    'ROWS' =&gt; $list, //Самое интересное, опишем ниже
+    'SHOW_ROW_CHECKBOXES' =&gt; true, 
+    'NAV_OBJECT' =&gt; $nav, 
+    'AJAX_MODE' =&gt; 'Y', 
+    'AJAX_ID' =&gt; \CAjax::getComponentID('bitrix:main.ui.grid', '.default', ''), 
+    'PAGE_SIZES' =&gt; [ 
+        ['NAME' =&gt; "5", 'VALUE' =&gt; '5'], 
+        ['NAME' =&gt; '10', 'VALUE' =&gt; '10'], 
+        ['NAME' =&gt; '20', 'VALUE' =&gt; '20'], 
+        ['NAME' =&gt; '50', 'VALUE' =&gt; '50'], 
+        ['NAME' =&gt; '100', 'VALUE' =&gt; '100'] 
+    ], 
+    'AJAX_OPTION_JUMP'          =&gt; 'N', 
+    'SHOW_CHECK_ALL_CHECKBOXES' =&gt; true, 
+    'SHOW_ROW_ACTIONS_MENU'     =&gt; true, 
+    'SHOW_GRID_SETTINGS_MENU'   =&gt; true, 
+    'SHOW_NAVIGATION_PANEL'     =&gt; true, 
+    'SHOW_PAGINATION'           =&gt; true, 
+    'SHOW_SELECTED_COUNTER'     =&gt; true, 
+    'SHOW_TOTAL_COUNTER'        =&gt; true, 
+    'SHOW_PAGESIZE'             =&gt; true, 
+    'SHOW_ACTION_PANEL'         =&gt; true, 
+    'ACTION_PANEL'              =&gt; [ 
+        'GROUPS' =&gt; [ 
+            'TYPE' =&gt; [ 
+                'ITEMS' =&gt; [ 
+                    [ 
+                        'ID'    =&gt; 'set-type', 
+                        'TYPE'  =&gt; 'DROPDOWN', 
+                        'ITEMS' =&gt; [ 
+                            ['VALUE' =&gt; '', 'NAME' =&gt; '- Выбрать -'], 
+                            ['VALUE' =&gt; 'plus', 'NAME' =&gt; 'Поступление'], 
+                            ['VALUE' =&gt; 'minus', 'NAME' =&gt; 'Списание'] 
+                        ] 
+                    ], 
+                    [ 
+                        'ID'       =&gt; 'edit', 
+                        'TYPE'     =&gt; 'BUTTON', 
+                        'TEXT'        =&gt; 'Редактировать', 
+                        'CLASS'        =&gt; 'icon edit', 
+                        'ONCHANGE' =&gt; '' 
+                    ], 
+                    [
+                        'ID'       =&gt; 'delete',
+                        'TYPE'     =&gt; 'BUTTON',
+                        'TEXT'     =&gt; 'Удалить',
+                        'CLASS'    =&gt; 'icon remove',
+                        'ONCHANGE' =&gt; $onchange-&gt;toArray()
+                    ],
+                ], 
+            ] 
+        ], 
+    ], 
+    'ALLOW_COLUMNS_SORT'        =&gt; true, 
+    'ALLOW_COLUMNS_RESIZE'      =&gt; true, 
+    'ALLOW_HORIZONTAL_SCROLL'   =&gt; true, 
+    'ALLOW_SORT'                =&gt; true, 
+    'ALLOW_PIN_HEADER'          =&gt; true, 
+    'AJAX_OPTION_HISTORY'       =&gt; 'N' 
+]);
+</code></pre>
+
+<p>Передаём данные в грид:</p>
+
+<pre><code class="language-php">&lt;?php
+
+$list = [
+    [
+        'data'    =&gt; [ //Данные ячеек
+        "ID" =&gt; 1,
+            "NAME" =&gt; "Название 1",
+            "AMOUNT" =&gt; 1000,
+            "PAYER_NAME" =&gt; "Плательщик 1"
+        ],
+        'actions' =&gt; [ //Действия над ними
+            [
+                'text'    =&gt; 'Редактировать',
+                'onclick' =&gt; 'document.location.href="/accountant/reports/1/edit/"'
+            ],
+            [
+                'text'    =&gt; 'Удалить',
+                'onclick' =&gt; 'document.location.href="/accountant/reports/1/delete/"'
+            ]
+
+        ],
+    ], [
+        'data'    =&gt; [ //Данные ячеек
+            "ID" =&gt; 2,
+            "NAME" =&gt; "Название 2",
+            "AMOUNT" =&gt; 3000,
+            "PAYER_NAME" =&gt; "Плательщик 2"
+        ],
+        'actions' =&gt; [ //Действия над ними
+            [
+                'text'    =&gt; 'Редактировать',
+                'onclick' =&gt; 'document.location.href="/accountant/reports/2/edit/"'
+            ],
+            [
+                'text'    =&gt; 'Удалить',
+                'onclick' =&gt; 'document.location.href="/accountant/reports/2/delete/"'
+            ]
+        ],
+    ]
+];
+</code></pre>
+
+<p>Результат вывода:</p>
+
+<p><img src="/assets/images/posts/bitrix-grid-filter/2.png" alt="" /></p>
+
+<p>Панель действий <code>ACTION_PANEL</code>:</p>
+
+<p><img src="/assets/images/posts/bitrix-grid-filter/3.png" alt="" /></p>
+
+<h2>Фильтр</h2>
+
+<p>За фильтрацию отвечает компонент <code>bitrix:main.ui.filter</code>. Его параметры:</p>
+
+<table>
+<thead>
+<tr>
+  <th>Параметр</th>
+  <th align="left">Тип</th>
+  <th align="left">Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>FILTER_ID</td>
+  <td align="left">string</td>
+  <td align="left">Идентификатор фильтра (должен быть уникальным)</td>
+</tr>
+<tr>
+  <td>GRID_ID</td>
+  <td align="left">string</td>
+  <td align="left">Идентификатор грида к которому применяем фильтр</td>
+</tr>
+<tr>
+  <td>FILTER</td>
+  <td align="left">array</td>
+  <td align="left">Массив с полями для фильтрации</td>
+</tr>
+<tr>
+  <td>ENABLE_LABEL</td>
+  <td align="left">bool</td>
+  <td align="left">Показывать название полей или нет</td>
+</tr>
+<tr>
+  <td>ENABLE_LIVE_SEARCH</td>
+  <td align="left">bool</td>
+  <td align="left">Будет ли доступна live-фильтрация</td>
+</tr>
+</tbody>
+</table>
+
+<p>Пример вызова:</p>
+
+<pre><code class="language-php">&lt;?php
+
+$APPLICATION-&gt;IncludeComponent('bitrix:main.ui.filter', '', [ 
+    'FILTER_ID' =&gt; 'report_list', 
+    'GRID_ID' =&gt; 'report_list', 
+    'FILTER' =&gt; [ 
+        ['id' =&gt; 'DATE', 'name' =&gt; 'Дата', 'type' =&gt; 'date'], 
+        ['id' =&gt; 'IS_SPEND', 'name' =&gt; 'Тип операции', 'type' =&gt; 'list', 'items' =&gt; ['' =&gt; 'Любой', 'P' =&gt; 'Поступление', 'M' =&gt; 'Списание'], 'params' =&gt; ['multiple' =&gt; 'Y']],
+        ['id' =&gt; 'AMOUNT', 'name' =&gt; 'Сумма', 'type' =&gt; 'number'], 
+        ['id' =&gt; 'PAYER_INN', 'name' =&gt; 'ИНН Плательщика', 'type' =&gt; 'number'], 
+        ['id' =&gt; 'PAYER_NAME', 'name' =&gt; 'Плательщик'], 
+    ], 
+    'ENABLE_LIVE_SEARCH' =&gt; true, 
+    'ENABLE_LABEL' =&gt; true 
+]);
+</code></pre>
+
+<p>Результат:</p>
+
+<p><img src="/assets/images/posts/bitrix-grid-filter/4.png" alt="" /></p>
+
+<p>Также фильтры можно сохранять для быстрого использования:</p>
+
+<p><img src="/assets/images/posts/bitrix-grid-filter/5.png" alt="" /></p>
+
+<h2>Связка фильтра и грида</h2>
+
+<p>Чтобы пробросить данные из фильтра в грид, необходимо собрать фильтр:</p>
+
+<pre><code class="language-php">&lt;?php
+
+$filter = [];
+$filterOption = new Bitrix\Main\UI\Filter\Options('report_list');
+$filterData = $filterOption-&gt;getFilter([]);
+foreach ($filterData as $k =&gt; $v) {
+    $filter[$k] = $v;            
+}
+</code></pre>
+
+<h2>Фильтрация любых данных</h2>
+
+<p>Связка Фильтр-Грид работает в 1С-Битрикс по умолчанию, но иногда хочется такую фильтрацию добавить к своим данным, например, к выводу графика:</p>
+
+<p><img src="/assets/images/posts/bitrix-grid-filter/6.png" alt="" /></p>
+
+<p>Для того, чтобы это заработало, необходимо «подписаться» на событие применения фильтра:</p>
+
+<pre><code class="language-html">&lt;script type="text/javascript"&gt;
+BX.addCustomEvent('BX.Main.Filter:apply', BX.delegate(function (command, params) { 
+    var workarea = $('#' + command); // в command будет храниться GRID_ID из фильтра 
+
+    $.post(window.location.href, function(data){ 
+        workarea.html($(data).find('#' + command).html()); 
+    }) 
+}));
+&lt;/script&gt;
+</code></pre>
+
+<h2>Хаки</h2>
+
+<p>Почему-то 1С-Битрикс в своих компонентах автоматически не подцепляет css-файл со стилями кнопок (на момент написания статьи),
+поэтому перед вызовом компонентов, рекомендуется добавить css-файл вручную:</p>
+
+<pre><code class="language-php">&lt;?php
+
+Bitrix\Main\Page\Asset::getInstance()-&gt;addCss('/bitrix/css/main/grid/webform-button.css');
+</code></pre>
+
+<p>Чтобы обновить грид без перезагрузки страницы, воспользуйтесь методом:</p>
+
+<pre><code class="language-html">&lt;script type="text/javascript"&gt;
+var reloadParams = { apply_filter: 'Y', clear_nav: 'Y' };
+var gridObject = BX.Main.gridManager.getById('report_list'); // Идентификатор грида
+
+if (gridObject.hasOwnProperty('instance')){
+  gridObject.instance.reloadTable('POST', reloadParams);
+}
+&lt;/script&gt;
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PHP 8.1 до и после | Сергей Пантелеев</title>
+    <meta name="description" content="Перевод статьи об улучшениях в PHP 8.1">
+            <link rel="alternate" hreflang="en" href="https://stitcher.io/blog/php-81-before-and-after"/>
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="container pb-16 md:pb-28">
+        <div class="pt-8 md:pt-16 pb-4 md:pb-8">
+            <h1 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+                PHP 8.1 до и после
+            </h1>
+
+            <div class="flex flex-row items-center my-8 space-x-1 md:space-x-4 justify-center">
+                                                            <a href="/posts/tag/php"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">PHP</a>
+                                            <span class="bg-gray-100 text-gray-500 px-2 py-1 rounded uppercase text-sm font-bold">PHP 8.1</span>
+                                    
+                <p class="font-normal text-base text-gray-600">27 июля 2021 г.</p>
+            </div>
+        </div>
+
+        <div class="h-64 md:h-96 mb-8">
+            <img class="object-contain w-full h-full bg-dark-purplish-blue"
+                 style="object-position: 50% 50%"
+                 src="/assets/images/posts/php-81-before-and-after/cover.jpg"
+                 alt="PHP 8.1 до и после">
+        </div>
+
+        <div class="max-w-4xl">
+                            <div class="w-full bg-gray-100 my-5 text-dark-purplish-blue">
+                    <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+                        <div class="flex">
+                            <span class="font-medium mr-1">Перевод статьи</span>
+                            «<a href="https://stitcher.io/blog/php-81-before-and-after"
+                                rel="noreferrer noopener"
+                                class="display-inline border-b border-gray-300 hover:border-transparent transition-all"
+                                target="_blank">PHP 8.1: before and after</a>»
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="prose prose-lg text-gray-600 max-w-none mt-5">
+                <p><a href="https://wiki.php.net/todo/php81">PHP 8.1</a> выйдет через несколько месяцев и я в восторге от множества нововведений!
+Хочу поделиться реальным влиянием PHP 8.1 на мой собственный код.</p>
+
+<h2>Перечисления</h2>
+
+<p>Долгожданный функционал, перечисления скоро будут доступны!</p>
+
+<p>О них можно сказать не так много, кроме того, что я с нетерпением жду, когда мне больше не придётся использовать <a href="https://github.com/spatie/enum">spatie/enum</a> или <a href="https://github.com/myclabs/php-enum">myclabs/php-enum</a>.
+Спасибо за все годы поддержки этих enum-пакетов, но они будут первыми, от которых я откажусь, когда появится PHP 8.1 и когда я изменю это:</p>
+
+<pre><code class="language-php">/**
+ * @method static self draft()
+ * @method static self published()
+ * @method static self archived()
+ */
+class StatusEnum extends Enum
+{
+}
+</code></pre>
+
+<p>На это:</p>
+
+<pre><code class="language-php">enum Status
+{
+    case draft;
+    case published;
+    case archived;
+}
+</code></pre>
+
+<h2>Распаковка массивов со строковыми ключами</h2>
+
+<p>Может показаться незначительным, но меня это не раз беспокоило: до PHP 8.1 можно было распаковывать только массивы с числовыми ключами:</p>
+
+<pre><code class="language-php">$a = [1, 2, 3];
+$b = [4, 5, 6];
+
+// Доступно, начиная с PHP 7.4
+$new = [...$a, ...$b];
+</code></pre>
+
+<p>В то время как массивы со строковыми ключами распаковать таким образом было нельзя:</p>
+
+<pre><code class="language-php">$a = ['a' =&gt; 1, 'b' =&gt; 2, 'c' =&gt; 3];
+$b = ['d' =&gt; 4, 'e' =&gt; 5, 'f' =&gt; 6];
+
+$new = [...$a, ...$b]; 
+
+// В этом случае необходимо использовать array_merge
+$new = array_merge($a, $b);
+</code></pre>
+
+<p>Итак, одна из особенностей PHP 8.1, которая облегчит мне жизнь, заключается в том, что теперь можно также распаковывать массивы со строковыми ключами!</p>
+
+<h2>Свойства класса: инициализаторы и readonly</h2>
+
+<p>Ещё одно замечательное улучшение, которое я ждал годами: аргументы по умолчанию в параметрах функции. Представьте, что вы хотите установить класс состояния по умолчанию для объекта <code>BlogData</code>. До PHP 8.1 вам необходимо было объявить его допускающим значение <code>null</code> и установить в конструкторе:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public function __construct(
+        public string $title,
+        public ?BlogState $state = null,
+    ) {
+        $this-&gt;state ??= new Draft();
+    }
+}
+</code></pre>
+
+<p>PHP 8.1 позволяет вызов new непосредственно в определении функции. Это потрясающе:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public function __construct(
+        public string $title,
+        public BlogState $state = new Draft(),
+    ) {
+    }
+}
+</code></pre>
+
+<p>Говоря о грандиозных нововведениях, я уже упоминал, что readonly-свойства теперь стали явью?!?</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public function __construct(
+        public readonly string $title,
+        public readonly BlogState $state = new Draft(),
+    ) {
+    }
+}
+</code></pre>
+
+<p>Да, кстати, не беспокойтесь о клонировании, <a href="https://stitcher.io/blog/cloning-readonly-properties-in-php-81">я о вас позаботился</a>.</p>
+
+<h2>Callback-функции как объекты первого класса</h2>
+
+<p>Как будто всего этого было недостаточно, теперь также доступны callback-функции как объекты первого класса, которые позволяют использовать более чистый код для создания замыканий из вызываемых объектов.</p>
+
+<p>Раньше приходилось писать что-то вроде этого:</p>
+
+<pre><code class="language-php">$strlen = Closure::fromCallable('strlen');
+$callback = Closure::fromCallable([$object, 'method']);
+</code></pre>
+
+<p>В PHP 8.1 вы можете написать… так:</p>
+
+<pre><code class="language-php">$strlen = strlen(...);
+$callback = $object-&gt;method(...);
+</code></pre>
+
+<p>В PHP 8.1 есть ещё <a href="https://stitcher.io/blog/new-in-php-81">много нового</a>, но это то, что меня волнует больше всего.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

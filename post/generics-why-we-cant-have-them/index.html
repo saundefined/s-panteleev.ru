@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Почему в PHP нет дженериков? | Сергей Пантелеев</title>
+    <meta name="description" content="Перевод серии статей о дженериках в PHP. Часть 3.">
+            <link rel="alternate" hreflang="en" href="https://stitcher.io/blog/generics-in-php-3"/>
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="container pb-16 md:pb-28">
+        <div class="pt-8 md:pt-16 pb-4 md:pb-8">
+            <h1 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+                Почему в PHP нет дженериков?
+            </h1>
+
+            <div class="flex flex-row items-center my-8 space-x-1 md:space-x-4 justify-center">
+                                                            <a href="/posts/tag/php"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">PHP</a>
+                                            <a href="/posts/tag/generics"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">Дженерики в PHP</a>
+                                    
+                <p class="font-normal text-base text-gray-600">8 апреля 2022 г.</p>
+            </div>
+        </div>
+
+        <div class="h-64 md:h-96 mb-8">
+            <img class="object-contain w-full h-full bg-dark-purplish-blue"
+                 style="object-position: 50% 50%"
+                 src="/assets/images/posts/generics-why-we-cant-have-them/cover.jpg"
+                 alt="Почему в PHP нет дженериков?">
+        </div>
+
+        <div class="max-w-4xl">
+                            <div class="w-full bg-gray-100 my-5 text-dark-purplish-blue">
+                    <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+                        <div class="flex">
+                            <span class="font-medium mr-1">Перевод статьи</span>
+                            «<a href="https://stitcher.io/blog/generics-in-php-3"
+                                rel="noreferrer noopener"
+                                class="display-inline border-b border-gray-300 hover:border-transparent transition-all"
+                                target="_blank">Why we can&#039;t have generics in PHP</a>»
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="prose prose-lg text-gray-600 max-w-none mt-5">
+                <h1>Почему в PHP нет дженериков?</h1>
+
+<p>Мы собираемся глубже погрузиться в то, что происходит под капотом, когда речь заходит о дженериках и PHP. Очень
+интересно и очень важно понять, почему дженерики до сих пор не поддерживаются как полноценные компоненты PHP.</p>
+
+<p>Давайте начнём.</p>
+
+<p>Дженерики не появятся в PHP. Таков
+был <a href="https://www.reddit.com/r/PHP/comments/j65968/ama_with_the_phpstorm_team_from_jetbrains_on/g7zg9mt/">вывод Никиты</a> в
+прошлом году. Это просто невозможно было реализовать.</p>
+
+<p>Чтобы понять, почему Никита так сказал, нужно разобраться, как могут быть реализованы дженерики. Есть три
+возможных способа сделать это — языки программирования, которые поддерживают дженерики, в основном используют один из
+этих трёх методов.</p>
+
+<p>Первый из них — <strong>Мономорфизированные дженерики</strong> (Monomorphized Generics).
+Давайте вернёмся к коллекции из <a href="/post/generics-in-php/">первой статьи</a> этой серии:</p>
+
+<pre><code class="language-php">&lt;?php
+
+class StringCollection extends Collection
+{
+    public function offsetGet(mixed $key): string 
+    { /* … */ }
+}
+
+class UserCollection extends Collection
+{
+    public function offsetGet(mixed $key): User 
+    { /* … */ }
+}
+</code></pre>
+
+<p>Я объяснил, что мы можем вручную создавать реализации класса коллекции для каждого типа, для которого нам нужна коллекция.
+Будет много ручной работы, будет много кода, но это будет работать.</p>
+
+<p>Мономорфизированные дженерики именно это и делают, но автоматически, под капотом.
+Во время выполнения PHP не будет знать об общем классе <code>Collection</code>, только о двух более конкретных реализациях:</p>
+
+<pre><code class="language-php">$users = new Collection&lt;User&gt;();
+// Collection_User
+
+$slugs = new Collection&lt;string&gt;();
+// Collection_string
+</code></pre>
+
+<p>Мономорфизированные дженерики — абсолютно правильный подход. Например, такой подход используется в Rust. Одним из преимуществ
+является значительный прирост производительности, потому что больше нет проверок общих типов во время выполнения, всё
+разделяется на части перед выполнением кода.</p>
+
+<p>Но в PHP нет явного шага компиляции, как в Rust, чтобы разделить один общий класс на несколько конкретных реализаций, и,
+кроме того, мономорфизированные дженерики потребляют довольно много памяти, потому что необходимо создать несколько копий одного и того
+же класса с некоторыми отличиями. Это не такая большая проблема для скомпилированного двоичного кода Rust,
+но это серьёзная проблема для PHP-кода, запускаемого на сервере, возможно, обслуживающего сотни или тысячи запросов в секунду.</p>
+
+<p>Следующий метод — <strong>Материализованные дженерики</strong> (Reified Generics). Реализация, в которой общий класс сохраняется как есть, а информация о типе
+оценивается на лету во время выполнения. Материализованные дженерики используются в C# и Kotlin и это наиболее близко к текущей
+системе типов PHP, потому что PHP выполняет все проверки типов во время выполнения.</p>
+
+<p>Проблема в том, что для работы материализованных дженериков потребовался бы огромный объем рефакторинга кода ядра PHP,
+а также снизилась бы производительность, поскольку во время выполнения мы делали бы всё больше и больше проверок типов.</p>
+
+<p>Это подводит нас к последнему методу: полное игнорирование дженериков во время выполнения. Как будто их нет. В конце
+концов, универсальная реализация, например, класса коллекции в любом случае будет работать с любым типом входных данных.</p>
+
+<p>Таким образом, если мы будем игнорировать проверки общих типов во время выполнения, проблем не возникнет.</p>
+
+<p>Но не спешите. Игнорирование общих типов во время выполнения — это, кстати, называется <strong>затиранием типов</strong> в Java и
+Python, создаёт некоторые проблемы в PHP.</p>
+
+<p>Во-первых, PHP не только использует типы для проверки, он также использует информацию о типах для преобразования
+значений на лету из одного типа в другой — жонглирование типами, о котором я упоминал в <a href="/post/generics-in-php/">первой статье</a> этой серии:</p>
+
+<pre><code class="language-php">&lt;?php
+
+function add(int $a, int $b): int 
+{
+    return $a + $b;
+}
+
+add('1', '2') // 3;
+</code></pre>
+
+<p>Если бы PHP проигнорировал общий тип этой «строковой» коллекции и мы случайно добавили бы к ней целое число, он не смог
+бы нас об этом предупредить, если бы общий тип был затёрт:</p>
+
+<pre><code class="language-php">&lt;?php
+
+$slugs = new Collection&lt;string&gt;();
+
+$slugs[] = 1; // 1 не будет приведено к '1'
+</code></pre>
+
+<p>Вторая и более важная проблема с затиранием типов, возможно, вы уже догадались, заключается в том,
+что типы исчезают. Зачем нам добавлять общие типы, если они затираются во время выполнения?</p>
+
+<p>Есть смысл делать это в Java и Python, потому что все определения типов проверяются перед запуском кода с помощью статического
+анализатора. Java, например, запускает встроенный статический анализатор во время компиляции кода, то, чего PHP просто не
+делает: нет шага компиляции и уж точно нет встроенного статического анализатора типов.</p>
+
+<p>С другой стороны... все преимущества проверки типов, о которых мы говорили в предыдущих статьях, не берутся из
+встроенного в PHP средства проверки типов во время выполнения. К тому времени, когда средство проверки типов PHP
+сообщает нам, что что-то не так, мы уже выполняем код. Ошибка типа приведёт к сбою программы.</p>
+
+<p>Вместо этого, большая часть дополнительной ценности проверок типов исходит от статических анализаторов, которые не
+требуют запуска кода. Они довольно хорошо проверяют, не может ли быть ошибок типов во время выполнения, если вы,
+программист, предоставите достаточно информации о типах. Это не означает, что в вашем коде не может быть ошибок, но
+вполне возможно написать PHP-код, который полностью статически проверен и не выдаст никаких ошибок типа во время
+выполнения.</p>
+
+<p>Более того, статическая информация, которую мы получаем при написании кода, является самой ценной частью любой системы
+типов и не имеет ничего общего с проверкой типов во время выполнения.</p>
+
+<p>Так нужны ли нам проверки типов во время выполнения? Потому что это основная причина, по которой дженерики не могут быть
+добавлены в PHP сегодня — это либо слишком сложно, либо слишком ресурсоёмко для PHP, чтобы проверять дженерики во время
+выполнения.</p>
+
+<p>Об этом в следующий раз, в последней статье этой серии.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

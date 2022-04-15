@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Сергей Пантелеев | Сергей Пантелеев</title>
+    <meta name="description" content="PHP разработчик">
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="relative py-16 overflow-hidden md:py-32">
+        <h2 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+            Последние статьи
+        </h2>
+
+        <div class="grid pt-12 flex-gap-4 md:grid-cols-2 xl:grid-cols-3">
+                            <div class="flex flex-col overflow-hidden bg-white shadow-3xl rounded-xl">
+    <a aria-label="Boost your experience" href="https://s-panteleev.ru/post/the-case-for-generics">
+        <img class="object-cover w-full h-full h-64" style="object-position: 50% 50%"
+             src="/assets/images/posts/the-case-for-generics/cover.jpg"
+             alt="Доводы в пользу дженериков">
+    </a>
+    <div class="flex flex-col justify-between h-full p-6">
+                    <div class="mb-3 space-x-3">
+                                    <a href="/posts/tag/php"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">PHP</a>
+                                    <a href="/posts/tag/generics"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">Дженерики в PHP</a>
+                            </div>
+        
+        <a href="https://s-panteleev.ru/post/the-case-for-generics" class="hover:no-underline transition-all text-dark-purplish-blue hover:text-blue-500">
+            <p class="font-bold md:text-3xl text-xl">
+                Доводы в пользу дженериков
+            </p>
+        </a>
+
+        <p class="font-normal text-base text-gray-600 mt-5">Перевод серии статей о дженериках в PHP. Часть 4.</p>
+    </div>
+</div>                            <div class="flex flex-col overflow-hidden bg-white shadow-3xl rounded-xl">
+    <a aria-label="Boost your experience" href="https://s-panteleev.ru/post/generics-why-we-cant-have-them">
+        <img class="object-cover w-full h-full h-64" style="object-position: 50% 50%"
+             src="/assets/images/posts/generics-why-we-cant-have-them/cover.jpg"
+             alt="Почему в PHP нет дженериков?">
+    </a>
+    <div class="flex flex-col justify-between h-full p-6">
+                    <div class="mb-3 space-x-3">
+                                    <a href="/posts/tag/php"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">PHP</a>
+                                    <a href="/posts/tag/generics"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">Дженерики в PHP</a>
+                            </div>
+        
+        <a href="https://s-panteleev.ru/post/generics-why-we-cant-have-them" class="hover:no-underline transition-all text-dark-purplish-blue hover:text-blue-500">
+            <p class="font-bold md:text-3xl text-xl">
+                Почему в PHP нет дженериков?
+            </p>
+        </a>
+
+        <p class="font-normal text-base text-gray-600 mt-5">Перевод серии статей о дженериках в PHP. Часть 3.</p>
+    </div>
+</div>                            <div class="flex flex-col overflow-hidden bg-white shadow-3xl rounded-xl">
+    <a aria-label="Boost your experience" href="https://s-panteleev.ru/post/generics-in-depth">
+        <img class="object-cover w-full h-full h-64" style="object-position: 50% 50%"
+             src="/assets/images/posts/generics-in-depth/cover.jpg"
+             alt="Погружаемся в дженерики">
+    </a>
+    <div class="flex flex-col justify-between h-full p-6">
+                    <div class="mb-3 space-x-3">
+                                    <a href="/posts/tag/php"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">PHP</a>
+                                    <a href="/posts/tag/generics"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">Дженерики в PHP</a>
+                            </div>
+        
+        <a href="https://s-panteleev.ru/post/generics-in-depth" class="hover:no-underline transition-all text-dark-purplish-blue hover:text-blue-500">
+            <p class="font-bold md:text-3xl text-xl">
+                Погружаемся в дженерики
+            </p>
+        </a>
+
+        <p class="font-normal text-base text-gray-600 mt-5">Перевод серии статей о дженериках в PHP. Часть 2.</p>
+    </div>
+</div>                    </div>
+
+        <div class="my-10 text-center">
+            <a href="https://s-panteleev.ru/posts/"
+               class="inline-flex items-center font-bold rounded-full focus:outline-none focus-visible:ring focus:ring-dark-purplish-blue focus:ring-opacity-20 focus-visible:ring-offset-2 transition-all ease-in-out duration-300 group px-8 py-3 text-base bg-dark-purplish-blue text-white border-2 border-dark-purplish-blue hover:bg-white hover:text-dark-purplish-blue">
+                Все статьи
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

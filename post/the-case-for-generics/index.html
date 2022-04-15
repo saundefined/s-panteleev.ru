@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Доводы в пользу дженериков | Сергей Пантелеев</title>
+    <meta name="description" content="Перевод серии статей о дженериках в PHP. Часть 4.">
+            <link rel="alternate" hreflang="en" href="https://stitcher.io/blog/generics-in-php-4"/>
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="container pb-16 md:pb-28">
+        <div class="pt-8 md:pt-16 pb-4 md:pb-8">
+            <h1 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+                Доводы в пользу дженериков
+            </h1>
+
+            <div class="flex flex-row items-center my-8 space-x-1 md:space-x-4 justify-center">
+                                                            <a href="/posts/tag/php"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">PHP</a>
+                                            <a href="/posts/tag/generics"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">Дженерики в PHP</a>
+                                    
+                <p class="font-normal text-base text-gray-600">8 апреля 2022 г.</p>
+            </div>
+        </div>
+
+        <div class="h-64 md:h-96 mb-8">
+            <img class="object-contain w-full h-full bg-dark-purplish-blue"
+                 style="object-position: 50% 50%"
+                 src="/assets/images/posts/the-case-for-generics/cover.jpg"
+                 alt="Доводы в пользу дженериков">
+        </div>
+
+        <div class="max-w-4xl">
+                            <div class="w-full bg-gray-100 my-5 text-dark-purplish-blue">
+                    <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+                        <div class="flex">
+                            <span class="font-medium mr-1">Перевод статьи</span>
+                            «<a href="https://stitcher.io/blog/generics-in-php-4"
+                                rel="noreferrer noopener"
+                                class="display-inline border-b border-gray-300 hover:border-transparent transition-all"
+                                target="_blank">The case for PHP generics</a>»
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="prose prose-lg text-gray-600 max-w-none mt-5">
+                <h1>Доводы в пользу дженериков</h1>
+
+<p>Я начал эту серию с того, что хочу не только вас научить, но и привести свои аргументы, почему я считаю
+наиболее важным и логичным путём добавление дженериков в PHP.</p>
+
+<p>Решать вам, согласны вы с этим или нет. Итак, Ваша честь, я хотел бы начать своё последнее слово.</p>
+
+<p><a href="/post/generics-why-we-cant-have-them/">Мономорфизированные или Материализованные дженерики</a> не будут добавлены.</p>
+
+<p>По крайней мере, по словам Никиты, который провёл обширное исследование по этой теме. Оба варианта либо создают проблемы
+с производительностью, либо просто требуют слишком большого объёма рефакторинга средства проверки типов PHP во время
+выполнения, чтобы это можно было реализовать в разумные сроки.</p>
+
+<p>Однако, если мы подумаем об истинной ценности дженериков, она заключается не в проверке типов во время выполнения. К
+тому времени, когда сработает средство проверки типов во время выполнения PHP и, возможно, выдаст ошибку типа, мы уже
+выполняем код. Это приведёт к сбою нашей программы. И я никогда не слышал, чтобы пользователи моих программ
+говорили: «О, это ошибка типа, всё в порядке». Нет. Программа дала сбой, и точка.</p>
+
+<p>Проверка типов во время выполнения в PHP — это очень полезный инструмент отладки, я согласен, и в некоторых случаях он
+необходим при жонглировании типами. Но большая часть ценности системы типов PHP исходит от статического анализа.</p>
+
+<p>Поэтому, если мы хотим использовать дженерики в PHP, нам нужно поменять мышление:</p>
+
+<p>Во-первых, разработчики <strong>должны использовать статический анализ</strong>. Ирония здесь в том, что разработчики, которым нужны
+дженерики, которые понимают их ценность, также понимают ценность статической проверки типов. PHP-разработчикам, которым
+наплевать на статический анализ, также не стоит беспокоиться о ценности дженериков. Потому что эти две вещи, дженерики и
+статическая проверка типов просто не могут быть разделены.</p>
+
+<p>Во-вторых, если внутренние разработчики PHP решат, что статически проверяемые дженерики должны быть добавлены в PHP,
+следует задаться вопросом: оставить ли статический анализ в ведении сообщества, либо <strong>создать спецификацию</strong>, которой
+должен следовать каждый статический анализатор, либо реализовать свою <strong>собственную статическую проверку типов</strong>.</p>
+
+<p>Второй вариант был бы предпочтительнее, но вы можете себе представить, какой это большой труд. Я не думаю, что полагаться
+на проверенные сторонние инструменты будет проблемой.</p>
+
+<p>В-третьих, <strong>жонглирование типами было бы просто невозможно</strong>, по крайней мере, при использовании дженериков. Вам придётся
+доверять вашей статической проверке типов. Это способ программирования, к которому PHP-разработчики на самом деле не
+привыкли, но многие другие языки делают именно так и это прекрасно работает. Статическая проверка типов невероятно
+мощная и точная. Я могу себе представить, что разработчикам PHP трудно понять мощь языков со статической типизацией, не
+использовав их раньше. Стоит изучить такие языки, как Rust, Java или даже TypeScript, чтобы оценить мощь систем
+статических типов. Или вы можете начать использовать один из сторонних статических анализаторов PHP: Psalm или PHPStan.</p>
+
+<p>Подводя итог: если мы хотим, чтобы в PHP были дженерики, со всеми преимуществами для статического
+анализа, нам нужно принять тот факт, что дженерики, стираемые во время выполнения, являются единственным жизнеспособным
+путём.</p>
+
+<p>В заключение ещё несколько замечаний, на которые я хотел бы обратить внимание.</p>
+
+<p>Во-первых, есть аргумент, что всё, описываемое мной, уже возможно с помощью Docblock-аннотаций. Если вы вернётесь
+ко <a href="/post/generics-in-depth/">второй статье</a> этой серии, вы увидите, что я подробно объясняю различия, но позвольте мне
+кратко подытожить:</p>
+
+<ul>
+<li><p>Docblock-аннотации не передают разработчикам ту же важность, как встроенный синтаксис, поэтому в PHP 8 появились
+атрибуты; встроенный синтаксис имеет большее значение, чем Docblock.</p></li>
+<li><p>Кроме того, нет официальной спецификации того, как должны выглядеть общие аннотации при использовании Docblock.
+Сегодня это большая проблема, поскольку у всех трёх основных статических анализаторов немного разные реализации.</p></li>
+</ul>
+
+<p>Во-вторых, даже при стирании типов, мы всё ещё можем предоставлять информацию об общем типе с помощью Reflection API. Я
+не говорю, что информация о типах должна полностью исчезать во время выполнения, моя главная проблема в том, что PHP не
+должен проверять общие типы во время выполнения. Я не уверен, какое влияние окажет на ядро PHP доступность информации об
+общих типах с помощью Reflection API, поэтому я просто хочу сказать, что не против этой идеи.</p>
+
+<p>И, наконец, есть, конечно, другое решение. Теоретически его может использовать каждый. Оно хорошо зарекомендовало себя в
+прошлом: TypeScript. TypeScript пользуется огромной популярностью, и я думаю, что если есть место для подобного подхода
+в серверных языках, то PHP, вероятно, является отличным кандидатом. Однако TypeScript не появился волшебным образом в
+одночасье. Он был создан опытными разработчиками языка и это гораздо более глобальная задача, чем добавление дженериков,
+игнорируемых временем выполнения, в PHP. Но кто знает, может быть, когда-нибудь.</p>
+
+<p>Учитывая всё вышесказанное, я надеюсь, что вы нашли эту серию статей полезной и познавательной, я сказал о дженериках
+всё, что хотел. Я буду признателен, если вы поделитесь этой серией со своими коллегами и подписчиками — я считаю, что
+это важная тема, и хочу, чтобы ситуация изменилась.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

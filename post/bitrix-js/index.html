@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1С-Битрикс JS | Сергей Пантелеев</title>
+    <meta name="description" content="Разбор штатных JS-библиотека 1С-Битрикс">
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="container pb-16 md:pb-28">
+        <div class="pt-8 md:pt-16 pb-4 md:pb-8">
+            <h1 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+                1С-Битрикс JS
+            </h1>
+
+            <div class="flex flex-row items-center my-8 space-x-1 md:space-x-4 justify-center">
+                                                            <a href="/posts/tag/bitrix"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">1С-Битрикс</a>
+                                    
+                <p class="font-normal text-base text-gray-600">10 июля 2019 г.</p>
+            </div>
+        </div>
+
+        <div class="h-64 md:h-96 mb-8">
+            <img class="object-contain w-full h-full bg-dark-purplish-blue"
+                 style="object-position: 50% 50%"
+                 src="/assets/images/posts/bitrix-js/cover.jpg"
+                 alt="1С-Битрикс JS">
+        </div>
+
+        <div class="max-w-4xl">
+            
+            <div class="prose prose-lg text-gray-600 max-w-none mt-5">
+                <p>Практически в каждом проекте требуются различные JS-библиотеки: от слайдеров и всплывающих окон, до сложных графиков.</p>
+
+<p>Часто принимается решение использовать сторонние решения, но под капотом 1С-Битрикс припасено множество полезных функций.</p>
+
+<h2>amCharts</h2>
+
+<p>Проприетарная библиотека для построения различных графиков, лицензия на которую включена 1С-Битрикс любой редакции. Ознакомиться с видами графиков и кодом для построения можно на странице с <a href="https://www.amcharts.com/demos/">примерами</a>.</p>
+
+<p>Подключение библиотеки amCharts в 1С-Битрикс осуществляется стандартным способом: <code>CJSCore::Init(['amcharts']);</code></p>
+
+<p>Подключать библиотеку необходимо в зависимости от типа графика:</p>
+
+<table>
+<thead>
+<tr>
+  <th>Параметр</th>
+  <th align="left">Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>amcharts</code></td>
+  <td align="left">Базовая библиотека</td>
+</tr>
+<tr>
+  <td><code>amcharts_funnel</code></td>
+  <td align="left">Воронка, пирамида Маслоу</td>
+</tr>
+<tr>
+  <td><code>amcharts_gauge</code></td>
+  <td align="left">Диаграмма в виде спидометра</td>
+</tr>
+<tr>
+  <td><code>amcharts_pie</code></td>
+  <td align="left">Круговая диаграмма</td>
+</tr>
+<tr>
+  <td><code>amcharts_serial</code></td>
+  <td align="left">Обычные графики</td>
+</tr>
+<tr>
+  <td><code>amcharts_radar</code></td>
+  <td align="left">Радарная диаграмма</td>
+</tr>
+<tr>
+  <td><code>amcharts_xy</code></td>
+  <td align="left">График XY</td>
+</tr>
+</tbody>
+</table>
+
+<p><img src="/assets/images/posts/bitrix-js/1.png" alt="" /></p>
+
+<h2>MaskedInput</h2>
+
+<p>В 1С-Битриксе есть библиотека для указания масок ввода – <code>masked_input</code>, которая вполне может стать альтернативой <code>jquery.maskedinput</code>.</p>
+
+<pre><code class="language-php">&lt;?php
+
+CJSCore::Init(['masked_input']);
+?&gt;
+
+&lt;input type="text" id="phone" placeholder="Укажите ваш телефон" /&gt;
+
+&lt;script&gt;
+    BX.ready(function() {
+        var result = new BX.MaskedInput({
+            mask: '+7 999 999 99 99', // устанавливаем маску
+            input: BX('phone'),
+            placeholder: '_' // символ замены +7 ___ ___ __ __
+        });
+
+        result.setValue('9000000000'); // устанавливаем значение
+    });
+&lt;/script&gt;
+</code></pre>
+
+<h2>PhoneNumber</h2>
+
+<p>Хотя для масок телефонного номера лучше использовать другую библиотеку — <code>phone_number</code>.</p>
+
+<pre><code class="language-php">&lt;?php
+
+CJSCore::Init(['phone_number']);
+?&gt;
+
+&lt;span id="flag"&gt;&lt;/span&gt;
+&lt;input type="text" id="number" placeholder="Укажите ваш телефон" /&gt;
+
+&lt;script&gt;
+    BX.ready(function() {
+        new BX.PhoneNumber.Input({
+            node: BX('number'),
+            forceLeadingPlus: false, // принудительно установить +
+            flagNode: BX('flag'), //
+            flagSize: 16, // Размер флага [16, 24, 32]
+            defaultCountry: 'ru', // Страна по-умолчанию
+            onChange: function(e) {
+              // вызывается при изменении значения
+            }
+        });
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p><img src="/assets/images/posts/bitrix-js/2.png" alt="" /></p>
+
+<h2>PopupWindowManager</h2>
+
+<p>Всплывающие окна в 1С-Битрикс можно организовать с помощью <code>BX.PopupWindowManager</code>. Данная библиотека подходит, как для диалоговых окон, так и полноценных всплывающих страниц:</p>
+
+<pre><code class="language-php">&lt;?php
+
+CJSCore::Init(['popup']);
+?&gt;
+
+&lt;script&gt;
+    // BX.element - элемент, к которому будет привязано окно, если null – окно появится по центру экрана
+
+    BX.ready(function () {
+        var popup = BX.PopupWindowManager.create("popup-message", BX('element'), {
+            content: 'Контент, отображаемый в теле окна',
+            width: 400, // ширина окна
+            height: 100, // высота окна
+            zIndex: 100, // z-index
+            closeIcon: {
+                // объект со стилями для иконки закрытия, при null - иконки не будет
+                opacity: 1
+            },
+            titleBar: 'Заголовок окна',
+            closeByEsc: true, // закрытие окна по esc
+            darkMode: false, // окно будет светлым или темным
+            autoHide: false, // закрытие при клике вне окна
+            draggable: true, // можно двигать или нет
+            resizable: true, // можно ресайзить
+            min_height: 100, // минимальная высота окна
+            min_width: 100, // минимальная ширина окна
+            lightShadow: true, // использовать светлую тень у окна
+            angle: true, // появится уголок
+            overlay: {
+                // объект со стилями фона
+                backgroundColor: 'black',
+                opacity: 500
+            }, 
+            buttons: [
+                new BX.PopupWindowButton({
+                    text: 'Сохранить', // текст кнопки
+                    id: 'save-btn', // идентификатор
+                    className: 'ui-btn ui-btn-success', // доп. классы
+                    events: {
+                      click: function() {
+                          // Событие при клике на кнопку
+                      }
+                    }
+                }),
+                new BX.PopupWindowButton({
+                    text: 'Копировать',
+                    id: 'copy-btn',
+                    className: 'ui-btn ui-btn-primary',
+                    events: {
+                      click: function() {
+
+                      }
+                    }
+                })
+            ],
+            events: {
+               onPopupShow: function() {
+                  // Событие при показе окна
+               },
+               onPopupClose: function() {
+                  // Событие при закрытии окна                
+               }
+            }
+        });
+
+        popup.show();
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p><img src="/assets/images/posts/bitrix-js/3.png" alt="" /></p>
+
+<h2>PopupMenu</h2>
+
+<p>Выпадающие меню и списки в стиле Битрикс24 можно сделать с помощью <code>PopupMenu</code>:</p>
+
+<pre><code class="language-php">&lt;?php
+
+CJSCore::Init(['popup']);
+?&gt;
+
+&lt;div style="background: red; width: 100px; height: 40px; margin-left: 500px" id="element"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    BX.ready(function () {
+        BX.bind(BX('element'), 'click', function () {
+            BX.PopupMenu.show('demo-popup-menu', BX('element'), [
+                {
+                    text: 'Обычный пункт', // Название пункта
+                    href: '#', // Ссылка
+                    className: 'menu-popup-item menu-popup-no-icon', // Дополнительные классы
+                    onclick: function(e, item){
+                       BX.PreventDefault(e);
+                       // Событие при клике на пункт
+                    }
+                },
+                {
+                    text: 'Выбранный пункт',
+                    href: '#',
+                    className: 'menu-popup-item menu-popup-item-accept'
+                }
+            ], {
+              autoHide : true, // Закрытие меню при клике вне меню
+              offsetTop: 0, // смещение от элемента по Y
+              zIndex: 10000, // z-index
+              offsetLeft: 100,  // смещение от элемента по X
+              angle: { offset: 45 }, // Описание уголка, при null – уголка не будет
+              events: {
+                 onPopupShow: function() {
+                    // Событие при показе меню          
+                 },
+                 onPopupClose : function(){
+                    // Событие при закрытии меню
+                 },
+                 onPopupClose : function(){
+                    // Событие при уничтожении объекта меню
+                 }
+              }
+            });
+        });
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p><img src="/assets/images/posts/bitrix-js/4.png" alt="" /></p>
+
+<h2>SpotLight</h2>
+
+<p>Если необходимо привлечь внимание пользователя к элементу (например, инструкция по оформлению брони для новых менеджеров, или нужно уведомить о новом функционале) – с этим справится <code>SpotLight</code>.</p>
+
+<pre><code class="language-php">&lt;?php
+
+CJSCore::Init(['spotlight']);
+?&gt;
+
+&lt;div style="background: red; width: 100px; height: 40px; margin-left: 500px" id="element"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    BX.ready(function () {
+        var obj = new BX.SpotLight({
+            renderTo: BX('element'), // Привязать к элементу
+            top: 0, // позиционирование относительно элемента
+            left: 0, // позиционирование относительно элемента
+            content: '1. Сначала нажмите на эту кнопку',
+            lightMode: false, // Темный режим или светлый
+            observerTimeout: 10000, // Таймаут автопоказа
+            events: {
+                onPopupShow: function() {
+                  // Событие при показе подсказки
+                }
+            }
+
+        });
+
+        obj.show();
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p><img src="/assets/images/posts/bitrix-js/5.png" alt="" /></p>
+
+<h2>ColorPicker</h2>
+
+<p>Если необходимо выбрать цвет на сайте – для этого есть <code>ColorPicker</code>.</p>
+
+<pre><code class="language-php">&lt;?php
+
+CJSCore::Init(['color_picker']);
+?&gt;
+
+&lt;input type="text" id="example" /&gt;
+
+&lt;script&gt;
+  BX.ready(function() {
+    var element = BX('example');
+
+    BX.bind(element, 'focus', function () {
+        new BX.ColorPicker({
+            bindElement: element, // Элемент, к которому будет прикреплена область с выбором цвета
+            defaultColor: '#FF6600', // Цвет по-умолчанию
+            allowCustomColor: true, // Разрешить указывать произвольный цвет
+            onColorSelected: function (item) {
+                element.value = item // Вызывается при выборе цвета
+            },
+            popupOptions: {
+                angle: true, // треугольник
+                autoHide: true, // Закрытие по клику вне области
+                closeByEsc: true, // Закрытие по esc
+                events: {
+                    onPopupClose: function () {
+                        // Вызывается при закрытии окна
+                    }
+                }
+            }
+        }).open();
+    })
+  }
+&lt;/script&gt;
+</code></pre>
+
+<p><img src="/assets/images/posts/bitrix-js/6.png" alt="" /></p>
+
+<h2>Списки</h2>
+
+<p>Чтобы сделать красивые выпадающие списки в стиле Битрикс24, необходимо правильно разметить html-вёрстку:</p>
+
+<pre><code class="language-php">&lt;?php
+CJSCore::Init(['ui']);
+
+$items = [
+    ['NAME' =&gt; 'Первый вариант', 'VALUE' =&gt; '1'],
+    ['NAME' =&gt; 'Второй вариант', 'VALUE' =&gt; '2'],
+];
+?&gt;
+
+&lt;div style="padding: 100px" id="filter"&gt;
+    &lt;div data-name="SELECT_SINGLE" class="main-ui-filter-wield-with-label main-ui-filter-date-group main-ui-control-field-group"&gt;
+        &lt;span class="main-ui-control-field-label"&gt;Одиночный выбор&lt;/span&gt;
+        &lt;div data-name="SELECT_SINGLE"
+             data-items='&lt;?= \Bitrix\Main\Web\Json::encode($items); ?&gt;'
+             data-params='&lt;?= \Bitrix\Main\Web\Json::encode(['isMulti' =&gt; false]); ?&gt;'
+             id="select" class="main-ui-control main-ui-select"&gt;
+
+            &lt;span class="main-ui-select-name"&gt;Выберите&lt;/span&gt;
+            &lt;span class="main-ui-square-search"&gt;
+            &lt;input type="text" tabindex="2" class="main-ui-square-search-item"&gt;
+        &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div data-name="SELECT_MULTIPLE" class="main-ui-filter-wield-with-label main-ui-filter-date-group main-ui-control-field-group"&gt;
+        &lt;span class="main-ui-control-field-label"&gt;Множественный выбор&lt;/span&gt;
+        &lt;div data-name="SELECT_MULTIPLE"
+             data-items='&lt;?= \Bitrix\Main\Web\Json::encode($items); ?&gt;'
+             data-params='&lt;?= \Bitrix\Main\Web\Json::encode(['isMulti' =&gt; true]); ?&gt;'
+             id="select2" class="main-ui-control main-ui-multi-select"&gt;
+
+            &lt;span class="main-ui-square-container"&gt;&lt;/span&gt;
+            &lt;span class="main-ui-square-search"&gt;&lt;input type="text" tabindex="2" class="main-ui-square-search-item"&gt;&lt;/span&gt;
+            &lt;span class="main-ui-hide main-ui-control-value-delete"&gt;&lt;span class="main-ui-control-value-delete-item"&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;span class="ui-btn-primary ui-btn" id="update_filter"&gt;Найти&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Минусы этого подхода – результаты списков придётся получать с помощью <code>JavaScript</code>.</p>
+
+<pre><code class="language-html">&lt;script&gt;
+    BX.ready(function() {
+        var filter = BX('filter'),
+            submit = BX('update_filter');
+
+        BX.bind(submit, 'click', function() {
+            var fields = BX.findChildren(filter, {
+                attribute: 'data-name',
+                className: 'main-ui-control'
+            }, true);
+
+            fields.forEach(function(element){
+                console.log(element.getAttribute('data-name'));
+                console.log(JSON.parse(element.getAttribute('data-value')));
+            });
+        })
+    })
+&lt;/script&gt;
+</code></pre>
+
+<p><img src="/assets/images/posts/bitrix-js/7.png" alt="" /></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

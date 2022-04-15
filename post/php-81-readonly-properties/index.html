@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Свойства, доступные только для чтения в PHP 8.1 | Сергей Пантелеев</title>
+    <meta name="description" content="Перевод статьи про свойства, доступные только для чтения, которые были добавлены в PHP 8.1">
+            <link rel="alternate" hreflang="en" href="https://stitcher.io/blog/php-81-readonly-properties"/>
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="container pb-16 md:pb-28">
+        <div class="pt-8 md:pt-16 pb-4 md:pb-8">
+            <h1 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+                Свойства, доступные только для чтения в PHP 8.1
+            </h1>
+
+            <div class="flex flex-row items-center my-8 space-x-1 md:space-x-4 justify-center">
+                                                            <a href="/posts/tag/php"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">PHP</a>
+                                            <span class="bg-gray-100 text-gray-500 px-2 py-1 rounded uppercase text-sm font-bold">PHP 8.1</span>
+                                    
+                <p class="font-normal text-base text-gray-600">20 сентября 2021 г.</p>
+            </div>
+        </div>
+
+        <div class="h-64 md:h-96 mb-8">
+            <img class="object-contain w-full h-full bg-dark-purplish-blue"
+                 style="object-position: 50% 50%"
+                 src="/assets/images/posts/php-81-readonly-properties/cover.jpg"
+                 alt="Свойства, доступные только для чтения в PHP 8.1">
+        </div>
+
+        <div class="max-w-4xl">
+                            <div class="w-full bg-gray-100 my-5 text-dark-purplish-blue">
+                    <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+                        <div class="flex">
+                            <span class="font-medium mr-1">Перевод статьи</span>
+                            «<a href="https://stitcher.io/blog/php-81-readonly-properties"
+                                rel="noreferrer noopener"
+                                class="display-inline border-b border-gray-300 hover:border-transparent transition-all"
+                                target="_blank">PHP 8.1: readonly properties</a>»
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="prose prose-lg text-gray-600 max-w-none mt-5">
+                <p>Написание <acronym title="Объект передачи данных">DTO</acronym> и <acronym title="Объект-значение">VO</acronym> на PHP с
+годами стало значительно проще. Взгляните, например, на DTO в PHP 5.6:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    /** @var string */
+    private $title;
+
+    /** @var Status */
+    private $status;
+
+    /** @var \DateTimeImmutable|null */
+    private $publishedAt;
+
+    /**
+     * @param string $title
+     * @param Status $status
+     * @param \DateTimeImmutable|null $publishedAt
+     */
+    public function __construct(
+        $title,
+        $status,
+        $publishedAt = null
+    ) {
+        $this-&gt;title = $title;
+        $this-&gt;status = $status;
+        $this-&gt;publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this-&gt;title;
+    }
+
+    /**
+     * @return Status
+     */
+    public function getStatus()
+    {
+        return $this-&gt;status;
+    }
+
+    /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getPublishedAt()
+    {
+        return $this-&gt;publishedAt;
+    }
+}
+</code></pre>
+
+<p>И сравните с аналогом в PHP 8.0:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public function __construct(
+        private string $title,
+        private Status $status,
+        private ?DateTimeImmutable $publishedAt = null,
+    ) {
+    }
+
+    public function getTitle(): string
+    {
+        return $this-&gt;title;
+    }
+
+    public function getStatus(): Status
+    {
+        return $this-&gt;status;
+    }
+
+    public function getPublishedAt(): ?DateTimeImmutable
+    {
+        return $this-&gt;publishedAt;
+    }
+}
+</code></pre>
+
+<p>Видна огромная разница, хотя я думаю, что есть ещё одна большая проблема: все эти методы чтения. Лично я их больше не
+использую, начиная с PHP 8.0, в котором добавили определение свойств в конструкторе. Я предпочитаю использовать
+общедоступные свойства вместо написания методов чтения:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public function __construct(
+        public string $title,
+        public Status $status,
+        public ?DateTimeImmutable $publishedAt = null,
+    ) {
+    }
+}
+</code></pre>
+
+<p>Однако объектно-ориентированным пуристам такой подход не нравится: внутренний статус объекта не должен быть раскрыт
+напрямую и определённо не может быть изменён извне.</p>
+
+<p>В наших проектах в Spatie есть внутреннее руководство по написанию кода, согласно которому DTO и VO с общедоступными
+свойствами не должны изменяться извне. Подход, который, кажется, работает вполне неплохо, мы используем его уже довольно
+давно, не сталкиваясь с какими-либо проблемами.</p>
+
+<p>Однако да, я согласен с тем, что было бы лучше, если бы язык гарантировал, что общедоступные свойства вообще не могут
+быть переопределены. Что ж, в PHP 8.1 решили эту проблему, добавив ключевое слово <code>readonly</code>:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public function __construct(
+        public readonly string $title,
+        public readonly Status $status,
+        public readonly ?DateTimeImmutable $publishedAt = null,
+    ) {
+    }
+}
+</code></pre>
+
+<p>Как и предполагает его название, смысл ключевого слова в том, что после того, как свойство установлено, его больше
+нельзя переопределить:</p>
+
+<pre><code class="language-php">$blog = new BlogData(
+    title: 'PHP 8.1: readonly-свойства',
+    status: Status::PUBLISHED,
+    publishedAt: now()
+);
+
+$blog-&gt;title = 'Какой-то другой заголовок'; // Ошибка: Нельзя переопределить свойство, доступное только для чтения BlogData::$title
+</code></pre>
+
+<p>Знание, что когда объект инициализирован, он больше не будет меняться, даёт нам определённый уровень уверенности и
+спокойствия при написании кода: целый ряд непредвиденных изменений данных просто не может произойти.</p>
+
+<p>Конечно, по-прежнему нужна возможность клонировать объект и, возможно, изменять некоторые свойства в процессе. Далее мы
+обсудим, как это сделать со свойствами, доступными только для чтения. Для начала, давайте рассмотрим их подробнее.</p>
+
+<h2>Только типизированные свойства</h2>
+
+<p>Свойства, доступные только для чтения могут быть только типизированными:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public readonly string $title;
+
+    public readonly $mixed; // Ошибка: Нельзя использовать не типизированное свойство, доступное только для чтения
+}
+</code></pre>
+
+<p>Однако вы можете использовать тип <code>mixed</code> для указания типа:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public readonly string $title;
+
+    public readonly mixed $mixed;
+}
+</code></pre>
+
+<p>Причина этого ограничения заключается в том, что, опуская тип свойства, PHP автоматически устанавливает значение <code>null</code>,
+если в конструкторе не было определено явное значение. Такое поведение в сочетании со свойствами, доступными только для чтения вызовет ненужную
+путаницу.</p>
+
+<h2>Обычные объекты и объекты с определением свойств в конструкторе</h2>
+
+<p>Вы уже видели примеры и того и другого: <code>readonly</code> можно добавить как к обычному, так и к свойству, определяемому в
+конструкторе:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public readonly string $title;
+
+    public function __construct(
+        public readonly Status $status, 
+    ) {}
+}
+</code></pre>
+
+<h2>Нет значения по умолчанию</h2>
+
+<p>У readonly-свойств не может быть значения по умолчанию:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public readonly string $title = 'Readonly-свойства'; // Ошибка: Нельзя использовать значение по умолчанию
+}
+</code></pre>
+
+<p>Точнее, если это не свойство, определяемое в конструкторе:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public function __construct(
+        public readonly string $title = 'Readonly-свойства', 
+    ) {}
+}
+</code></pre>
+
+<p>Причина, по которой это разрешено для свойств, определяемых в конструкторе, заключается в том, что значение по умолчанию
+в этом случае используется не в качестве значения по умолчанию для свойства класса, а только для аргумента конструктора.
+Под капотом приведённый выше код будет преобразован в этот:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    public readonly string $title;
+
+    public function __construct(
+        string $title = 'Readonly-свойства', 
+    ) {
+        $this-&gt;title = $title;
+    }
+}
+</code></pre>
+
+<p>Посмотрите, как фактическому свойству не присваивается значение по умолчанию. Причина запрета использования значений по
+умолчанию для свойств, доступных только для чтения, заключается в том, что в таком виде они ничем не будут отличаться от констант.</p>
+
+<h2>Наследование</h2>
+
+<p>Нельзя изменять флаг <code>readonly</code> при наследовании:</p>
+
+<pre><code class="language-php">class Foo
+{
+    public readonly int $prop;
+}
+
+class Bar extends Foo
+{
+    public int $prop; // Ошибка: Нельзя изменять флаг readonly
+}
+</code></pre>
+
+<p>Правило действует в обоих направлениях: вам не разрешено добавлять или удалять флаг <code>readonly</code> при наследовании.</p>
+
+<h2>Unset не допускается</h2>
+
+<p>После того как свойство, доступное только для чтения, установлено, вы не можете его изменить и даже сбросить:</p>
+
+<pre><code class="language-php">$foo = new Foo('value');
+
+unset($foo-&gt;prop); // Ошибка: Нельзя сбросить readonly-свойство
+</code></pre>
+
+<h2>Reflection</h2>
+
+<p>Добавлен новый метод <code>ReflectionProperty::isReadOnly()</code>, а также флаг <code>ReflectionProperty::IS_READONLY</code>.</p>
+
+<h2>Клонирование</h2>
+
+<p>Итак, если нельзя изменить свойство, доступные только для чтения, и, если нельзя их сбросить, каким образом можно создать копию своих DTO
+или VO и изменить какие-то данные? Также нельзя использовать <code>clone</code>, потому что вы не сможете перезаписать их значения.</p>
+
+<p>На самом деле есть идея добавить в будущем конструкцию <code>clone with</code>, которая допускает такое поведение, но сейчас
+проблема не решена.</p>
+
+<p>Что ж, можно клонировать объекты с изменёнными свойствами, доступными только для чтения, если полагаться на магию Reflection. Создавая объект
+без вызова его конструктора (что возможно с помощью Reflection), а затем вручную копируя каждое свойство, иногда
+перезаписывая значение, вы фактически можете «клонировать» объект и изменить его свойства, доступные только для чтения.</p>
+
+<p>Для этого я разработал <a href="https://github.com/spatie/php-cloneable">небольшой пакет</a>, вот как он выглядит:</p>
+
+<pre><code class="language-php">class BlogData
+{
+    use Cloneable;
+
+    public function __construct(
+        public readonly string $title,
+    ) {}
+}
+
+$dataA = new BlogData('Title');
+
+$dataB = $dataA-&gt;with(title: 'Another title');
+</code></pre>
+
+<p>Также я написал <a href="https://stitcher.io/blog/cloning-readonly-properties-in-php-81">специальный пост</a> в блоге, объясняющий
+всю механику.</p>
+
+<p>Вот и всё, что можно сказать о свойствах, доступных только для чтения. Я думаю, что это отличная возможность, при работе над проектами со
+множеством DTO и VO и требующими от вас тщательного управления потоком данных во всем коде. Неизменяемые объекты со
+свойствами, доступными только для чтения очень в этом помогут.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

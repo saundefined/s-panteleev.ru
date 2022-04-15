@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Правообладатели в 1С-Битрикс | Сергей Пантелеев</title>
+    <meta name="description" content="Страница «Правообладатели» в 1С-Битрикс. Зачем она нужна и как добавить свой компонент.">
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="container pb-16 md:pb-28">
+        <div class="pt-8 md:pt-16 pb-4 md:pb-8">
+            <h1 class="font-bold xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-dark-purplish-blue text-center">
+                Правообладатели в 1С-Битрикс
+            </h1>
+
+            <div class="flex flex-row items-center my-8 space-x-1 md:space-x-4 justify-center">
+                                                            <a href="/posts/tag/bitrix"
+       class="bg-dark-purplish-blue text-white px-2 py-1 rounded uppercase text-sm font-bold">1С-Битрикс</a>
+                                    
+                <p class="font-normal text-base text-gray-600">19 ноября 2020 г.</p>
+            </div>
+        </div>
+
+        <div class="h-64 md:h-96 mb-8">
+            <img class="object-contain w-full h-full bg-dark-purplish-blue"
+                 style="object-position: 50% 50%"
+                 src="/assets/images/posts/bitrix-third-party-components/cover.jpg"
+                 alt="Правообладатели в 1С-Битрикс">
+        </div>
+
+        <div class="max-w-4xl">
+            
+            <div class="prose prose-lg text-gray-600 max-w-none mt-5">
+                <h1>Правообладатели</h1>
+
+<p>Начиная с версии <code>20.100.0</code> Главного модуля появилась страница «Правообладатели» (<code>/bitrix/admin/copyright.php</code>).</p>
+
+<p>На ней перечислены лицензии используемых компонентов.</p>
+
+<p><img src="/assets/images/posts/bitrix-third-party-components/1.png" alt="" /></p>
+
+<h2>Добавление собственного компонента</h2>
+
+<p>Чтобы добавить свой компонент в список, необходимо зарегистрировать обработчик события:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+use Bitrix\Main\EventManager;
+use Bitrix\Main\EventResult;
+use Bitrix\Main\UI\Copyright;
+
+$eventManager = EventManager::getInstance();
+$eventManager-&gt;addEventHandler(
+    'main',
+    'onGetThirdPartySoftware',
+    function () {
+        return new EventResult(
+            EventResult::SUCCESS, [
+                (new Copyright('Модуль интеграции с Тинькофф'))
+                    -&gt;setProductUrl('https://github.com/saundefined/tinkoff-sdk')
+                    -&gt;setCopyright("Copyright 2020, Sergey Panteleev")
+                    -&gt;setLicence(Copyright::LICENCE_MIT)
+                    -&gt;setLicenceUrl('https://github.com/saundefined/tinkoff-sdk/blob/master/LICENSE.md'),
+
+                (new Copyright('Модуль СМС-сервисы'))
+                    -&gt;setProductUrl('https://github.com/qq-agency/ps.sms')
+                    -&gt;setCopyright("Copyright 2020, QQ")
+                    -&gt;setLicence(Copyright::LICENCE_MIT)
+                    -&gt;setLicenceUrl('https://github.com/qq-agency/ps.sms/blob/master/LICENSE.md'),
+            ]
+        );
+    }
+);
+</code></pre>
+
+<p><img src="/assets/images/posts/bitrix-third-party-components/2.png" alt="" /></p>
+
+<h2>Допустимые лицензии</h2>
+
+<table>
+<thead>
+<tr>
+  <th align="left">Лицензия</th>
+  <th align="left">Константа</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td align="left">MIT</td>
+  <td align="left"><code>Copyright::LICENCE_MIT</code></td>
+</tr>
+<tr>
+  <td align="left">Commercial</td>
+  <td align="left"><code>Copyright::LICENCE_COMMERCIAL</code></td>
+</tr>
+<tr>
+  <td align="left">Public Domain</td>
+  <td align="left"><code>Copyright::LICENCE_PUBLIC_DOMAIN</code></td>
+</tr>
+<tr>
+  <td align="left">2-Clause BSD</td>
+  <td align="left"><code>Copyright::LICENCE_BSD2</code></td>
+</tr>
+<tr>
+  <td align="left">3-Clause BSD</td>
+  <td align="left"><code>Copyright::LICENCE_BSD3</code></td>
+</tr>
+<tr>
+  <td align="left">Apache License, Version 2.0</td>
+  <td align="left"><code>Copyright::LICENCE_APACHE2</code></td>
+</tr>
+<tr>
+  <td align="left">W3C License</td>
+  <td align="left"><code>Copyright::LICENCE_W3C</code></td>
+</tr>
+<tr>
+  <td align="left">General Public License, version 2</td>
+  <td align="left"><code>Copyright::LICENSE_GPLV2</code></td>
+</tr>
+<tr>
+  <td align="left">Пользовательская лицензия</td>
+  <td align="left"><code>Copyright::LICENCE_CUSTOM</code></td>
+</tr>
+</tbody>
+</table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

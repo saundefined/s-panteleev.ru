@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Обо мне | Сергей Пантелеев</title>
+    <meta name="description" content="Заметки на полях">
+            <!-- Yandex.Metrika counter -->
+        <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {(m[i].a = m[i].a || []).push(arguments)}
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+              k, a)
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+          ym(50044507, 'init',
+            { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }) </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/50044507" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript> <!-- /Yandex.Metrika counter -->
+        <link rel="stylesheet" href="/assets/build/css/main.css">
+</head>
+<body class="flex flex-col justify-between min-h-screen font-sans antialiased">
+<nav aria-labelledby="nav-heading" :aria-expanded="isOpen"
+     class="container flex flex-wrap items-center justify-between py-5" x-data="{ isOpen: false }"
+     @keydown.escape="isOpen = false" @click.away="isOpen = false">
+    <a aria-label="logo" href="https://s-panteleev.ru">
+        <span class="font-bold text-xl lg:text-lg text-dark-purplish-blue">Сергей Пантелеев</span>
+    </a>
+
+    <button :aria-expanded="isOpen" aria-controls="nav-list" aria-label="toggle menu" @click="isOpen = !isOpen"
+            type="button" class="block px-2 text-indigo-900 lg:hidden focus:outline-none">
+        <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path x-show.transition="!isOpen"
+                  d="M3 7h18a1 1 0 100-2H3a1 1 0 000 2zm18 10H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2zm0-4H3a1 1 0 000 2h18a1 1 0 000-2z"/>
+
+            <path x-show="isOpen"
+                  d="M13.41 12l6.3-6.29a1.004 1.004 0 00-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 10-1.42 1.42l6.3 6.29-6.3 6.29a.999.999 0 000 1.42 1 1 0 001.42 0l6.29-6.3 6.29 6.3a1.001 1.001 0 001.639-.325 1 1 0 00-.22-1.095L13.41 12z"/>
+        </svg>
+    </button>
+
+    <!--Menu-->
+    <div class="flex-grow w-full lg:flex lg:items-center lg:w-auto hidden"
+         :class="{ 'block': isOpen, 'hidden': !isOpen }">
+        <ul id="nav-list"
+            class="flex-wrap items-center justify-end flex-1 pt-6 space-y-5 lg:space-y-0 lg:pt-0 list-reset lg:flex lg:space-x-10">
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/">Главная</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/posts/">Статьи</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/projects/">Проекты</a>
+            </li>
+            <li>
+                <a class="text-xl font-medium lg:text-lg text-dark-purplish-blue hover:text-blue-500"
+                   href="https://s-panteleev.ru/about/">Обо мне</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <div class="mx-auto flex my-16 md:flex-row flex-col items-center">
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+            <img class="object-cover object-center rounded" alt="Сергей Пантелеев"
+                 src="https://avatars.githubusercontent.com/u/4685504?v=4">
+        </div>
+        <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+            <h3 class="font-bold md:text-3xl lg:text-4xl text-2xl text-dark-purplish-blue">Обо мне</h3>
+            <span class="block w-14 h-1 bg-white mt-2 rounded"></span>
+            <div class="font-normal text-lg text-gray-600">
+                <p class="mt-3">Занимаюсь разработкой на PHP на 1С-Битрикс и Laravel.</p>
+                <p class="mt-3">
+                    Также пишу на React (JS, Native, Redux), Vue.js, в свободное время изучаю Swift и Go.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative overflow-hidden">
+        <div class="my-16">
+            <div class="flex flex-wrap">
+                <div class="mb-10 md:mb-0 lg:w-4/12">
+                    <h3 class="font-bold md:text-3xl lg:text-4xl text-2xl text-dark-purplish-blue">Проекты</h3>
+                    <span class="block w-14 h-1 bg-dark-purplish-blue mt-2 rounded"></span>
+                </div>
+                <div class="lg:w-8/12">
+                    <div class="grid flex-gap-10 md:grid-cols-2">
+                                                    <div class="flex items-start p-5 bg-white shadow-3xl rounded-xl">
+    <div class="ml-5">
+        <a href="https://s-panteleev.ru/project/mobile-ovi-record" class="font-bold md:text-2xl text-lg hover:no-underline transition-all text-dark-purplish-blue hover:text-blue-500">Приложение «Ovi Record»</a>
+        <p class="font-normal text-base leading-7 text-gray-600 mt-2">
+            Приложение для поклонников Александра Овечкина и всех любителей НХЛ
+        </p>
+    </div>
+</div>                                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-16">
+        <div class="container px-8 py-12 bg-dark-purplish-blue md:px-12 rounded-2xl">
+            <div class="flex flex-col items-center md:flex-row justify-around">
+                <div class="md:mr-auto">
+                    <h3 class="font-bold md:text-3xl lg:text-4xl text-2xl text-white">Резюме</h3>
+                    <span class="block w-14 h-1 bg-white mt-2 rounded"></span>
+                </div>
+                <div class="mt-12 md:mt-0">
+                    <a href="https://docs.google.com/document/d/1R4ZXXmpq0mbTBb73RUxD8Iag7DRAksmECbav-aOsnIs/edit"
+                       target="_blank" rel="noreferrer noopener"
+                       class="inline-flex items-center font-bold rounded-full transition-all ease-in-out duration-300 group px-6 py-4 text-base text-dark-purplish-blue bg-white shadow-xs group border border-dark-purplish-blue hover:border-white hover:bg-dark-purplish-blue hover:text-white">
+                        <span>Скачать</span>
+                        <i class="ml-2 fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative overflow-hidden">
+        <div class="my-16">
+            <div class="flex flex-wrap">
+                <div class="mb-10 md:mb-0 lg:w-4/12">
+                    <h3 class="font-bold md:text-3xl lg:text-4xl text-2xl text-dark-purplish-blue">Open Source</h3>
+                    <span class="block w-14 h-1 bg-dark-purplish-blue mt-2 rounded"></span>
+                </div>
+                <div class="lg:w-8/12">
+                    <div class="grid flex-gap-10 md:grid-cols-2">
+                        <div class="flex items-start p-5 bg-white shadow-3xl rounded-xl">
+    <div class="ml-5">
+        <p class="font-bold md:text-2xl text-lg text-dark-purplish-blue">Документация по PHP</p>
+        <p class="font-normal text-base leading-7 text-gray-600 mt-2">
+            Последние несколько лет активно поддерживаю <a href="https://github.com/php/doc-ru" class="display-inline border-b border-gray-300 hover:border-transparent transition-all" target="_blank" rel="noreferrer noopener">русский перевод</a> документации по PHP в актуальном состоянии.<br/>
+                                    Помогаю с <a href="https://github.com/php/doc-en" class="display-inline border-b border-gray-300 hover:border-transparent transition-all" target="_blank" rel="noreferrer noopener">английской</a>, <a href="https://github.com/php/doc-de" class="display-inline border-b border-gray-300 hover:border-transparent transition-all" target="_blank" rel="noreferrer noopener">немецкой</a> и <a href="https://github.com/php/doc-fr" class="display-inline border-b border-gray-300 hover:border-transparent transition-all" target="_blank" rel="noreferrer noopener">французской</a> версиями.
+        </p>
+    </div>
+</div>
+                        <div class="flex items-start p-5 bg-white shadow-3xl rounded-xl">
+    <div class="ml-5">
+        <p class="font-bold md:text-2xl text-lg text-dark-purplish-blue">Symfony 5. Быстрый старт</p>
+        <p class="font-normal text-base leading-7 text-gray-600 mt-2">
+            Один из переводчиков книги «<a href="https://symfony.com/doc/current/the-fast-track/ru/index.html" class="display-inline border-b border-gray-300 hover:border-transparent transition-all" target="_blank" rel="noreferrer noopener">Symfony 5. Быстрый старт</a>» на русский язык.
+        </p>
+    </div>
+</div>
+                        <div class="flex items-start p-5 bg-white shadow-3xl rounded-xl">
+    <div class="ml-5">
+        <p class="font-bold md:text-2xl text-lg text-dark-purplish-blue">BeerPHP Ярославль</p>
+        <p class="font-normal text-base leading-7 text-gray-600 mt-2">
+            Организатор сообщества <a href="https://github.com/beerphp/yaroslavl" class="display-inline border-b border-gray-300 hover:border-transparent transition-all" target="_blank" rel="noreferrer noopener">BeerPHP Ярославль</a>.
+        </p>
+    </div>
+</div>
+                        <div class="flex items-start p-5 bg-white shadow-3xl rounded-xl">
+    <div class="ml-5">
+        <p class="font-bold md:text-2xl text-lg text-dark-purplish-blue">Bitrix Idea</p>
+        <p class="font-normal text-base leading-7 text-gray-600 mt-2">
+            Развиваю плагин <a href="https://plugins.jetbrains.com/plugin/14703-bitrix-idea" class="display-inline border-b border-gray-300 hover:border-transparent transition-all" target="_blank" rel="noreferrer noopener">Bitrix Idea</a> для PhpStorm.
+                            <span id="install-bitrix-idea" data-idea-widget="14703" class="block mt-5"></span>
+        </p>
+    </div>
+</div>                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-16">
+        <div class="flex flex-wrap items-center justify-between">
+            <div class="max-w-xl mx-auto lg:mr-auto lg:mx-0">
+                <div class="py-8 pl-6 pr-6 space-y-5 bg-dark-purplish-blue md:pl-14 md:pr-10 md:py-10 rounded-2xl">
+                    <h3 class="font-bold md:text-3xl lg:text-4xl text-2xl text-white">Контакты</h3>
+                    <span class="block w-14 h-1 bg-white mt-2 rounded"></span>
+                    <p class="font-normal text-base text-white">
+                        Вы можете связаться со мной любым предложенным способом.
+                    </p>
+                </div>
+            </div>
+            <div class="max-w-md mx-auto mt-12 lg:mt-0">
+                <div class="grid grid-cols-2 flex-gap-10 md:grid-cols-5">
+                    <a href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+    <img class="object-contain w-full h-full mx-auto max-h-14" style="object-position: 50% 50%"
+         src="/assets/images/socials/telegram.svg"
+         alt="">
+</a>
+                    <a href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+    <img class="object-contain w-full h-full mx-auto max-h-14" style="object-position: 50% 50%"
+         src="/assets/images/socials/vk.svg"
+         alt="">
+</a>
+                    <a href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+    <img class="object-contain w-full h-full mx-auto max-h-14" style="object-position: 50% 50%"
+         src="/assets/images/socials/github.svg"
+         alt="">
+</a>
+                    <a href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+    <img class="object-contain w-full h-full mx-auto max-h-14" style="object-position: 50% 50%"
+         src="/assets/images/socials/twitter.svg"
+         alt="">
+</a>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="body-font bg-dark-purplish-blue">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <p class="text-sm text-white sm:ml-4 sm:py-2 sm:mt-0 mt-4">
+            © 2022 Сергей Пантелеев
+        </p>
+        <div class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <div class="icon-list-social">
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://t.me/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://vk.com/id261057243" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-vk"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://github.com/saundefined" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a class="icon-list-social-link ml-3 text-white text-opacity-70 hover:text-opacity-100 transition-all"
+       href="https://twitter.com/s_panteleev" rel="noopener noreferrer" target="_blank">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+</div>        </div>
+    </div>
+</footer>
+
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script src="/assets/build/js/main.js"></script>
+</body>
+</html>

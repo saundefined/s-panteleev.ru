@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Сергей Пантелеев</title>
+        <link>https://s-panteleev.ru</link>
+        <description>Заметки на полях</description>
+        <language>ru</language>
+                    <item>
+    <title>Доводы в пользу дженериков</title>
+    <link>https://s-panteleev.ru/post/the-case-for-generics</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/the-case-for-generics</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Перевод серии статей о дженериках в PHP. Часть 4.</description>
+            <category>php</category>
+            <category>generics</category>
+    </item>            <item>
+    <title>Почему в PHP нет дженериков?</title>
+    <link>https://s-panteleev.ru/post/generics-why-we-cant-have-them</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/generics-why-we-cant-have-them</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Перевод серии статей о дженериках в PHP. Часть 3.</description>
+            <category>php</category>
+            <category>generics</category>
+    </item>            <item>
+    <title>Погружаемся в дженерики</title>
+    <link>https://s-panteleev.ru/post/generics-in-depth</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/generics-in-depth</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Перевод серии статей о дженериках в PHP. Часть 2.</description>
+            <category>php</category>
+            <category>generics</category>
+    </item>            <item>
+    <title>Дженерики в PHP</title>
+    <link>https://s-panteleev.ru/post/generics-in-php</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/generics-in-php</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Перевод серии статей о дженериках в PHP. Часть 1.</description>
+            <category>php</category>
+            <category>generics</category>
+    </item>            <item>
+    <title>Свойства, доступные только для чтения в PHP 8.1</title>
+    <link>https://s-panteleev.ru/post/php-81-readonly-properties</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/php-81-readonly-properties</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Перевод статьи про свойства, доступные только для чтения, которые были добавлены в PHP 8.1</description>
+            <category>php</category>
+            <category>PHP 8.1</category>
+    </item>            <item>
+    <title>Перечисления в PHP 8.1</title>
+    <link>https://s-panteleev.ru/post/php-81-enums</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/php-81-enums</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Перевод статьи про перечисления, которые были добавлены в PHP 8.1</description>
+            <category>php</category>
+            <category>PHP 8.1</category>
+    </item>            <item>
+    <title>PHP 8.1 до и после</title>
+    <link>https://s-panteleev.ru/post/php-81-before-and-after</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/php-81-before-and-after</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Перевод статьи об улучшениях в PHP 8.1</description>
+            <category>php</category>
+            <category>PHP 8.1</category>
+    </item>            <item>
+    <title>Правообладатели в 1С-Битрикс</title>
+    <link>https://s-panteleev.ru/post/bitrix-third-party-components</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/bitrix-third-party-components</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Страница «Правообладатели» в 1С-Битрикс. Зачем она нужна и как добавить свой компонент.</description>
+            <category>bitrix</category>
+    </item>            <item>
+    <title>СМС-сервисы в 1С-Битрикс</title>
+    <link>https://s-panteleev.ru/post/bitrix-sms</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/bitrix-sms</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Обзор СМС-сервисов в 1С-Битрикс, добавление собственного сервиса</description>
+            <category>bitrix</category>
+    </item>            <item>
+    <title>AJAX-запросы в 1С-Битрикс</title>
+    <link>https://s-panteleev.ru/post/bitrix-ajax</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/bitrix-ajax</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Как работать с AJAX-запросами в 1С-Битрикс</description>
+            <category>bitrix</category>
+    </item>            <item>
+    <title>1С-Битрикс JS</title>
+    <link>https://s-panteleev.ru/post/bitrix-js</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/bitrix-js</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Разбор штатных JS-библиотека 1С-Битрикс</description>
+            <category>bitrix</category>
+    </item>            <item>
+    <title>Гриды и фильтры в 1С-Битрикс</title>
+    <link>https://s-panteleev.ru/post/bitrix-grid-filter</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/bitrix-grid-filter</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Как работать с гридами и фильтрами в 1С-Битрикс</description>
+            <category>bitrix</category>
+    </item>            <item>
+    <title>Сайты 24</title>
+    <link>https://s-panteleev.ru/post/bitrix-sites24</link>
+    <guid isPermaLink="true">https://s-panteleev.ru/post/bitrix-sites24</guid>
+    <author>sergey@s-panteleev.ru (Сергей Пантелеев)</author>
+    <description>Обзор Сайтов 24 от 1С-Битрикс</description>
+            <category>bitrix</category>
+    </item>        </channel>
+</rss>
